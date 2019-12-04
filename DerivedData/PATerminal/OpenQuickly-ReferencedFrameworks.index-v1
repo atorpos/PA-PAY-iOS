@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<string>GoogleMobileAds</string>
+	<string>LocalAuthentication</string>
+	<string>AVFoundation</string>
+	<string>FirebasePerformance</string>
+	<string>CommonCrypto</string>
+	<string>CoreLocation</string>
+	<string>FirebaseDynamicLinks</string>
+	<string>ImageIO</string>
+	<string>AudioToolbox</string>
+	<string>objc</string>
+	<string>FirebaseAuth</string>
+	<string>CoreBluetooth</string>
+	<string>NotificationCenter</string>
+	<string>CoreData</string>
+	<string>FirebaseMessaging</string>
+	<string>FirebaseCore</string>
+	<string>arpa</string>
+	<string>sys</string>
+	<string>StarIO</string>
+	<string>CoreImage</string>
+	<string>UserNotifications</string>
+	<string>FirebaseInstanceID</string>
+	<string>netinet6</string>
+	<string>FirebaseFirestore</string>
+	<string>FirebaseDatabase</string>
+	<string>SDWebImage</string>
+	<string>FirebaseRemoteConfig</string>
+	<string>WebKit</string>
+	<string>Crashlytics</string>
+	<string>MapKit</string>
+	<string>XCTest</string>
+	<string>FirebaseCrash</string>
+	<string>Foundation</string>
+	<string>QuartzCore</string>
+	<string>Security</string>
+	<string>Fabric</string>
+	<string>AppKit</string>
+	<string>FirebaseAppIndexing</string>
+	<string>Contacts</string>
+	<string>FirebaseInvites</string>
+	<string>netinet</string>
+	<string>FirebaseStorage</string>
+	<string>SystemConfiguration</string>
+	<string>FirebaseAnalytics</string>
+	<string>UIKit</string>
+</array>
+</plist>

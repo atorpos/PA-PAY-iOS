@@ -1,0 +1,28 @@
+//
+//  services.pch
+//  PATerminal
+//
+//  Created by oskar wong on 17/4/2019.
+//  Copyright © 2019 Oskar Wong. All rights reserved.
+//
+
+#ifndef services_pch
+#define services_pch
+
+#define PRODUCTIONURL @"https://gateway.pa-sys.com"
+#define PRODUCTION_MERCH_URl @"https://merchant.pa-sys.com"
+#define TESTINGURL @"http://gateway.adam-lok.pa-sys.com"
+#define LOGIN_ENDPOINT @"/papay/sign-in"
+#define TRANSACTION_ENDPOINT @"/papay/transactions"
+#define INFORMATION_ENDPOINT @"/papay/information"
+#define EXTERNAL_URL @"https://www.paymentasia.com/en/contact-us?enquiry=cup_alipay_wechat"
+#define CHANGEPW_ENDPOINT @"/papay/change-password"
+#define REQUEST_ENDPOINT @"/papay/qrcode-recognition"
+#define QUERY_ENDPOINT @"/papay/query"
+#define ONETIME_ENDPOINT @"/papay/one-time-qrcode"
+#define PROMOTION_ENDPOINT @"https://merchant.pa-sys.com/papay/promotion/"
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#endif /* services_pch */

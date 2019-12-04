@@ -1,0 +1,74 @@
+/* 
+  Localizable.strings
+  PATerminal
+
+  Created by Oskar Wong on 2018/03/27.
+  Copyright © 2018 Oskar Wong. All rights reserved.
+*/
+"Login" = "Login";
+"Password" = "Password";
+"Terminal ID" = "Terminal ID";
+"Merchant ID" = "Merchant ID";
+"Home" = "Home";
+"Reports" = "Report";
+"History" = "History";
+"Settings" = "Settings";
+"Terminal" = "Terminal";
+"Today's Transcation"="Today Transaction";
+"Open QR Code" = "Alipay QR Code";
+"Report" = "Weekly Report";
+"Account" = "Account";
+"Your pervious use location" = "Previous Login location";
+"Login"= "Login";
+"Logout" = "Logout";
+"Check Out" = "Check Out";
+"NO TODAY'S TRANSCATION" = "NO TRANSACTIONS TODAY";
+"Align QR code within the image to scan" = "Align QR code within the image to scan";
+"Scan QRcode" = "Scan QR Code";
+"Back" = "Back";
+"Payment Received" = "Payment received";
+"Done" = "Done";
+"Payment Processing" = "Payment processing";
+"Buyer inputs password" = "Buyer inputs password";
+"Retry and Close" = "Continue";
+"Payment Declined" = "Payment declined";
+"RESCAN" = "RESCAN";
+"Transcation Alert" = "Transaction alert";
+"dismiss" = "dismiss";
+"Error" = "Error";
+"Enter all login informations" = "Enter all login information";
+"Invalid Login information" = "Invalid Login information";
+"OK" = "OK";
+"Charge" = "Charge";
+"Alipay" = "Alipay";
+"Help" = "Help";
+"FAQ" = "FAQ";
+"Announcements" = "Announcements";
+"About" = "About";
+"Legal" = "Legal";
+"Support" = "Support";
+"Accept Payment Asia's Terms, Privacy Policy, and E-Sign Consent" = "Accept Payment Asia's Terms, Privacy Policy, and E-Sign Consent";
+"View Payment Asia's Terms, Privacy Policy, and E-Sign Consent" = "View Payment Asia's Terms, Privacy Policy, and E-Sign Consent";
+"Edit Account" = "Change Password";
+"Change Password" = "Change Password";
+"Old Password" = "Old Password";
+"New Password" = "New Password";
+"Re-enter Password" = "Re-enter Password";
+"Close" = "Close";
+"Terms of Services" = "Terms of Services";
+"Please inform customer to input the password on his/her Alipay App" = "Please inform customer to input the password on his/her Alipay App";
+"Histories" = "History";
+"Accept" = "Accept";
+"Decline" = "Decline";
+"Contact Alipay Support" = "Contact Alipay Support";
+"Contact PA Pay Support" = "Contact PA Pay Support";
+"Learn More" = "Learn More";
+"Refund" = "Refund";
+"Hardware" = "Hardware";
+"Printers" = "Printers";
+"Items" = "Items";
+"All Items" = "All Items";
+"Contact PA Pay Support Via WhatsApp" = "Contact PA Pay Support Via WhatsApp";
+"Add Product" = "Add Product";
+"Create Item" = "Create Item";
+"View Promotions" = "View Promotions";

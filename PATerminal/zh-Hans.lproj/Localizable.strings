@@ -1,0 +1,72 @@
+/*
+ Localizable.strings
+ PATerminal
+ 
+ Created by Oskar Wong on 2018/03/27.
+ Copyright © 2018 Oskar Wong. All rights reserved.
+ */
+"Login" = "登入";
+"Password" = "密码";
+"Terminal ID" = "终端机号码";
+"Merchant ID" = "商户号码";
+"Home" = "主页";
+"Reports" = "交易报告";
+"History" = "今日纪录";
+"Settings" = "设定";
+"Terminal: %@" = "终端机: %@";
+"Today's Transcation"="今日交易总额";
+"Open QR Code" = "开启商户二维码";
+"Report" = "报告";
+"Account" = "账户选择";
+"Your pervious use location" = "上一次使用位置";
+"Login"= "登入";
+"Logout" = "登出";
+"Check Out" = "结帐";
+"NO TODAY'S TRANSCATION" = "今日未有交易纪录";
+"Align QR code within the image to scan" = "请对准扫描商户的二维码";
+"Scan QRcode" = "扫描二维码";
+"Back" = "返回";
+"Payment Received" = "交易成功";
+"Done" = "完成";
+"Payment Processing" = "交易处理中";
+"Buyer inputs password" = "顾客请输入密码";
+"Retry and Close" = "继续";
+"Payment Declined" = "交易失败";
+"RESCAN" = "重新扫描";
+"Transcation Alert" = "交易提示";
+"dismiss" = "关闭";
+"Error" = "错误";
+"Enter all login informations" = "请输入所有登入资料";
+"Invalid Login information" = "资料不正确，请重新输入";
+"OK" = "确定";
+"Charge" = "确认付款";
+"Alipay" = "支付宝";
+"Help" = "小帮手";
+"FAQ" = "FAQ";
+"Announcements" = "最新资讯";
+"About" = "关于我们";
+"Legal" = "法律条文";
+"Support" = "支援";
+"Edit Account" = "更改密码";
+"Change Password" = "更改密码";
+"Old Password" = "请输入旧密码";
+"New Password" = "请输入新密码";
+"Re-enter Password" = "请再次输入新密码";
+"Close" = "关闭";
+"Terms of Services" = "服务条款";
+"Contact Alipay Support" = "支付宝客户热线";
+"Contact PA Pay Support" = "PA Pay App 技术支援热线";
+"Please inform customer to input the password on his/her Alipay App" = "请提示客人在Alipay App上输入他的密码";
+"Histories" = "今日交易纪录";
+"Accept" = "同意";
+"Decline" = "不同意";
+"Learn More" = "支援热线";
+"Refund" = "退款";
+"Hardware" = "硬件";
+"Printers" = "打印机";
+"Items" = "产品";
+"All Items" = "全部产品";
+"Contact PA Pay Support Via WhatsApp" = "PA Pay App WhatsApp技术支援";
+"Add Product" = "增加产品";
+"Create Item" = "增加产品";
+"View Promotions" = "最新推广资讯";

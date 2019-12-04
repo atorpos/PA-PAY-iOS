@@ -1,0 +1,17 @@
+{
+  "images" : [
+    {
+      "idiom" : "iphone",
+      "subtype" : "retina4",
+      "filename" : "Launching Screen_640_1136.jpg",
+      "minimum-system-version" : "7.0",
+      "orientation" : "portrait",
+      "unassigned" : true,
+      "scale" : "2x"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  }
+}

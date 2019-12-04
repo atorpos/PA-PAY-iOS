@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14135" systemVersion="17E202" minimumToolsVersion="Xcode 7.3" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+    <entity name="Product_info" representedClassName="Product_info" syncable="YES">
+        <attribute name="product_description" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="product_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="product_image" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <attribute name="product_price" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="product_quantity" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="product_sold" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sdk" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Transaction_info" representedClassName="Transaction_info" syncable="YES" codeGenerationType="category">
+        <attribute name="created_time" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="merchant_reference" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="order_amount" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="order_currency" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="provider_reference" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="request_reference" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="updated_time" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Product_info" positionX="-45" positionY="72" width="128" height="148"/>
+        <element name="Transaction_info" positionX="-524" positionY="99" width="128" height="178"/>
+    </elements>
+</model>
