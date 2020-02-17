@@ -13,7 +13,7 @@
 @class HistoryDetailViewController;
 @class ScanBarcodeViewController;
 @class writefiles;
-@interface HistoryViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate> {
+@interface HistoryViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, UIGestureRecognizerDelegate> {
     CGFloat curwidth;
     CGFloat curheigh;
     UIView *loadingbgview;
@@ -29,7 +29,18 @@
     NSString *theorderamount;
     UIImageView *paymentview;
     writefiles *writefileclass;
+    UISwipeGestureRecognizer *swipeLeft;
+    UISwipeGestureRecognizer *swipeRight;
+    NSDate *date;
+    NSTimeInterval ti;
+    float recorddate;
+    UILongPressGestureRecognizer *longpress;
+    UITapGestureRecognizer *twofingers;
+    
+    
 }
 @property (strong, nonatomic) IBOutlet UITableView *tableview;
+
+-(IBAction)selectdatetypetransaction:(id)sender;
 
 @end

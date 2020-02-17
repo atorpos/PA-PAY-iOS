@@ -58,10 +58,10 @@
     NSLog(@"the tabbar %@", homelabel);
     [self setUpTabbar];
     // Do any additional setup after loading the view.
-    UIImage *buttonImage = [UIImage imageNamed:@"addcart.png"];
-    UIImage *highlightImage = [UIImage imageNamed:@"addcart.png"];
+    UIImage *buttonImage = [UIImage imageNamed:@"pay.png"];
+    UIImage *highlightImage = [UIImage imageNamed:@"pay.png"];
     UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame = CGRectMake(0.0, 0.0, cgbtwidth, cgheight);
+    button.frame = CGRectMake(0.0, 0.0, cgbtwidth+4, cgheight+8);
     [button setImage:buttonImage forState:UIControlStateNormal];
     [button setImage:highlightImage forState:UIControlStateHighlighted];
     [button addTarget:self action:@selector(openview:) forControlEvents:UIControlEventTouchUpInside];

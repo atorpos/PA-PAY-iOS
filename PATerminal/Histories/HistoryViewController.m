@@ -23,7 +23,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    date = [NSDate date];
+    ti = [date timeIntervalSince1970];
+    recorddate = ti;
     // Do any additional setup after loading the view.
     curwidth = [UIScreen mainScreen].bounds.size.width;
     curheigh = [UIScreen mainScreen].bounds.size.height;
@@ -31,7 +33,28 @@
     standarddefault = [NSUserDefaults standardUserDefaults];
     //UIView *mainview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, curwidth, curheigh)];
     writefileclass = [[writefiles alloc] init];
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"Scan" style:UIBarButtonItemStylePlain target:self action:@selector(showcam)];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"SCAN", nil) style:UIBarButtonItemStylePlain target:self action:@selector(showcam)];
+    
+    twofingers= [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
+    [twofingers setNumberOfTouchesRequired:2];
+    [twofingers setNumberOfTapsRequired:1];
+    [twofingers setDelegate:self];
+    [self.view addGestureRecognizer:twofingers];
+    
+    swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(plusdate)];
+    [swipeLeft setDirection:UISwipeGestureRecognizerDirectionLeft];
+    [self.view addGestureRecognizer:swipeLeft];
+    
+    swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(minusdate)];
+    [swipeRight setDirection:UISwipeGestureRecognizerDirectionRight];
+    [self.view addGestureRecognizer:swipeRight];
+    
+    longpress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longTouch:)];
+    [longpress setNumberOfTapsRequired:0];
+    [longpress setMinimumPressDuration:1];
+    [longpress setDelegate:self];
+    
+    [self.view addGestureRecognizer:longpress];
     
     [self.navigationItem setRightBarButtonItem:item];
     [self showbutton];
@@ -41,7 +64,17 @@
     tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, curwidth, curheigh-105) style:UITableViewStylePlain];
     tableview.delegate = self;
     tableview.dataSource = self;
-    tableview.backgroundColor = [UIColor whiteColor];
+    
+    if (@available(iOS 12.0, *)) {
+        if (self.traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
+            tableview.backgroundColor = [UIColor blackColor];
+        } else {
+            tableview.backgroundColor = [UIColor whiteColor];
+        }
+    } else {
+        tableview.backgroundColor = [UIColor whiteColor];
+    }
+    
     /*
      if (@available(iOS 11.0, *)) {
      self.navigationController.navigationBar.prefersLargeTitles = YES;
@@ -64,7 +97,15 @@
     [writefileclass setpageview:@"history.view"];
 }
 -(void)checktranscation{
-    NSString *posttoken = [NSString stringWithFormat:@"token=%@", [standarddefault objectForKey:@"signtoken"]];
+    NSTimeInterval _interval=recorddate;
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:_interval];
+    NSDateFormatter *formatter= [[NSDateFormatter alloc] init];
+    [formatter setLocale:[NSLocale currentLocale]];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *dateString = [formatter stringFromDate:date];
+    
+     [self.navigationItem setTitle:[NSString stringWithFormat:@"%@", dateString]];
+    NSString *posttoken = [NSString stringWithFormat:@"token=%@&date=%@", [standarddefault objectForKey:@"signtoken"], dateString];
     NSLog(@"submit log %@", posttoken);
     NSData *postdata = [posttoken dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
     NSString *stringlength = [NSString stringWithFormat:@"%lu", (unsigned long)[posttoken length]];
@@ -88,10 +129,37 @@
     
     [task resume];
 }
--(void)showbutton {
+-(IBAction)selectdatetypetransaction:(id)sender
+{
     
+}
+
+-(void)plusdate
+{
+//    NSCalendar *cal = [NSCalendar currentCalendar];
+//    NSDate *tomorrow = [cal dateByAddingUnit:NSCalendarUnitDay
+//                                       value:1
+//                                      toDate:[NSDate date]
+//                                     options:0];
+//    NSLog(@"plus date %@", tomorrow);
+    if(recorddate < ti) {
+        recorddate = recorddate + 86400;
+    }
+    [self checktranscation];
+}
+-(void)minusdate
+{
+    recorddate = recorddate - 86400;
+    [self checktranscation];
+}
+-(void)showdash {
+    NSLog(@"show dash");
+}
+-(void)showbutton {
+
 
 }
+
 -(void)showcam {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     scaninview = [storyboard instantiateViewControllerWithIdentifier:@"scaninvoiceview"];
@@ -100,6 +168,7 @@
 }
 
 -(void)fetchdata:(NSData *)requestdata {
+    [blankview removeFromSuperview];
     NSError *error;
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:requestdata options:kNilOptions error:&error];
     NSLog(@"data %@", json);
@@ -115,7 +184,7 @@
     [tableview reloadData];
 }
 -(void) norecord {
-    [tableview removeFromSuperview];
+//    [tableview removeFromSuperview];
     blankview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, curwidth, curheigh)];
     blankview.backgroundColor = [UIColor whiteColor];
     UILabel *annoucelabel = [[UILabel alloc] initWithFrame:CGRectMake(10, curheigh/2-12, curwidth-20, 24)];
@@ -156,7 +225,11 @@
          UIImageView *paymentview = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"paypal_c.png"]];
         paymentview.frame = CGRectMake(10, 15, 50, 50);
         [cell.contentView addSubview:paymentview];
-    } else {
+    } else if ([[[transactioninfo objectAtIndex:indexPath.row] valueForKey:@"provider"] isEqualToString:@"CUPOFFLINE"]) {
+        UIImageView *paymentview = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"unionpay_c.png"]];
+        paymentview.frame = CGRectMake(10, 15, 50, 50);
+        [cell.contentView addSubview:paymentview];
+    }else {
         UIImageView *paymentview = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"wechat_c.png"]];
         paymentview.frame = CGRectMake(10, 15, 50, 50);
         [cell.contentView addSubview:paymentview];
@@ -202,7 +275,7 @@
         //[cell.contentView addSubview:submainlab];
     } else {
         mainlabe.text = [NSString stringWithFormat:@"HKD $%@",theorderamount];
-        mainlabe.textColor = [UIColor colorWithWhite:0 alpha:1];
+//        mainlabe.textColor = [UIColor colorWithWhite:0 alpha:1];
     }
     
     mainlabe.textAlignment = NSTextAlignmentLeft;
@@ -236,6 +309,14 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 80;
 }
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    UIView* footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, curwidth, 20)];
+//    footerView.backgroundColor = [UIColor blackColor];
+//    [footerView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"ProductCellBackground.png"]]];
+    tableview.tableFooterView = footerView;
+    
+    return footerView;
+}
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
@@ -259,6 +340,29 @@
     [loadingview stopAnimating];
     [loadingview removeFromSuperview];
     [loadingbgview removeFromSuperview];
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    return YES;
+}
+
+- (void) longTouch: (UILongPressGestureRecognizer *)recognizer
+{
+    if (recognizer.state == UIGestureRecognizerStateBegan)
+    {
+        NSLog(@"longTouch UIGestureRecognizerStateBegan");
+    }
+    if (recognizer.state == UIGestureRecognizerStateEnded)
+    {
+        NSLog(@"longTouch UIGestureRecognizerStateEnded");
+    }
+}
+
+- (void)handlePan:(UIPanGestureRecognizer *)gestureRecognizer
+{
+    recorddate = ti;
+    [self checktranscation];
 }
 
 /*

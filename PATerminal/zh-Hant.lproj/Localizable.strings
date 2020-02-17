@@ -33,6 +33,7 @@
 "Retry and Close" = "繼續";
 "Payment Declined" = "交易失敗";
 "RESCAN" = "重新掃描";
+"SCAN" = "掃描";
 "Transcation Alert" = "交易提示";
 "dismiss" = "關閉";
 "Error" = "錯誤";
@@ -70,4 +71,4 @@
 "Add Product" = "增加產品";
 "Create Item" = "增加產品";
 "View Promotions" = "最新推廣資訊";
-
+"Notes" = "備註";

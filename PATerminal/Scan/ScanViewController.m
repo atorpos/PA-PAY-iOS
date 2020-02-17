@@ -117,7 +117,24 @@
     [bgimage setImage:[UIImage imageNamed:@"app_background.png"]];
     [self.view addSubview:bgimage];
     
-    cancelbutton = [[UIButton alloc] initWithFrame:CGRectMake(5, 40, 80, 20)];
+    UIWindow *window = UIApplication.sharedApplication.keyWindow;
+    CGFloat topPadding = window.safeAreaInsets.top;
+    
+    NSLog(@"show safe are insit %f", topPadding);
+    upperbar = [[UIView alloc] initWithFrame:CGRectMake(0, 0, curwidth, 44+topPadding)];
+    
+    if (@available(iOS 12.0, *)) {
+        if (self.traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
+            upperbar.backgroundColor = [UIColor colorWithWhite:0.3 alpha:1];
+        } else {
+            upperbar.backgroundColor = [UIColor colorWithWhite:0.98 alpha:1];
+        }
+    } else {
+        upperbar.backgroundColor = [UIColor colorWithWhite:0.98 alpha:1];
+    }
+    
+    
+    cancelbutton = [[UIButton alloc] initWithFrame:CGRectMake(5, topPadding+44/2-10, 80, 20)];
     cancelbutton.backgroundColor = [UIColor clearColor];
     [cancelbutton setTitle:NSLocalizedString(@"Back", nil) forState:UIControlStateNormal];
     [cancelbutton setTitleColor:[UIColor colorWithWhite:0.6 alpha:1] forState:UIControlStateNormal];
@@ -125,9 +142,10 @@
     [cancelbutton addTarget:self action:@selector(cancelpage:) forControlEvents:UIControlEventTouchUpInside];
     
     qrcodedeco = [[UILabel alloc]init];
-    qrcodedeco.frame = CGRectMake(0, 40, curwidth, 20);
+    qrcodedeco.frame = CGRectMake(0, topPadding+44/2-10, curwidth, 20);
     qrcodedeco.text = NSLocalizedString(@"Scan QRcode", nil);
     qrcodedeco.textAlignment = NSTextAlignmentCenter;
+    qrcodedeco.font = [UIFont systemFontOfSize:18 weight:UIFontWeightMedium];
     qrcodedeco.textColor = [UIColor colorWithWhite:0.6 alpha:1];
     
     thecamview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, curwidth, curheigh)];
@@ -138,14 +156,12 @@
     [thecamview addGestureRecognizer:swipeGesture];
     
     
-    upperbar = [[UIView alloc] initWithFrame:CGRectMake(0, 0, curwidth, 145)];
-    upperbar.backgroundColor = [UIColor colorWithWhite:0.98 alpha:1];
     
     [upperbar addSubview:cancelbutton];
     [upperbar addSubview:qrcodedeco];
     
     [self.view addSubview:thecamview];
-    [self.view addSubview:upperbar];
+    
     
     //[info_view addSubview:info_label];
     [self.view setNeedsDisplay];
@@ -177,6 +193,7 @@
     //[bottomview addSubview:info_view];
     [bottomview addSubview:substitle];
     [self.view addSubview:bottomview];
+    [self.view addSubview:upperbar];
 }
 -(void)creatonetimebutton {
     NSLog(@"show channel %lu", (unsigned long)[[defaults objectForKey:@"channels"] count]);
@@ -198,22 +215,42 @@
         
         [bottomview addSubview:showechatcode];
     }
-    UIButton *showqrcode = [UIButton buttonWithType:UIButtonTypeCustom];
-    showqrcode.frame = CGRectMake(curwidth-84, 37, 64, 64);
-    [showqrcode setTitle:NSLocalizedString(@"", nil) forState:UIControlStateNormal];
-    [showqrcode setBackgroundColor:[UIColor whiteColor]];
-    [showqrcode setTitleColor:[UIColor colorWithRed:0.38 green:0.66 blue:0.87 alpha:1] forState:UIControlStateNormal];
-    showqrcode.layer.borderColor = [UIColor whiteColor].CGColor;
-    showqrcode.layer.borderWidth = 0.5f;
-    showqrcode.layer.cornerRadius = 32;
-    [showqrcode addTarget:self action:@selector(getonetimeqrcode:) forControlEvents:UIControlEventTouchUpInside];
-    showqrcode.tag = 0;
-    UIImageView *apicnview = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"alipay_icon.png"]];
-    apicnview.frame = CGRectMake(10, 10, showqrcode.frame.size.width-20, showqrcode.frame.size.height-20);
-    [showqrcode addSubview:apicnview];
-    
-    
-    [bottomview addSubview:showqrcode];
+    if ([[defaults objectForKey:@"channels"] containsObject:@"CUPOFFLINE"]) {
+        UIButton *showunioncode = [UIButton buttonWithType:UIButtonTypeCustom];
+        showunioncode.frame = CGRectMake(curwidth-84*3, 37, 64, 64);
+        [showunioncode setTitle:@"" forState:UIControlStateNormal];
+        [showunioncode setBackgroundColor:[UIColor whiteColor]];
+        [showunioncode setTitleColor:[UIColor colorWithRed:0.38 green:0.66 blue:0.87 alpha:1] forState:UIControlStateNormal];
+        showunioncode.layer.borderColor = [UIColor whiteColor].CGColor;
+        showunioncode.layer.borderWidth = 0.5f;
+        showunioncode.layer.cornerRadius = 32;
+        [showunioncode addTarget:self action:@selector(getonetimeqrcode:) forControlEvents:UIControlEventTouchUpInside];
+        showunioncode.tag = 2;
+        UIImageView *apicnview = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"unionpay_c.png"]];
+        apicnview.frame = CGRectMake(10, 10, showunioncode.frame.size.width-20, showunioncode.frame.size.height-20);
+        [showunioncode addSubview:apicnview];
+        
+        
+        [bottomview addSubview:showunioncode];
+    }
+    if ([[defaults objectForKey:@"channels"] containsObject:@"ALIPAYOFFLINE"]) {
+        UIButton *showqrcode = [UIButton buttonWithType:UIButtonTypeCustom];
+        showqrcode.frame = CGRectMake(curwidth-84, 37, 64, 64);
+        [showqrcode setTitle:NSLocalizedString(@"", nil) forState:UIControlStateNormal];
+        [showqrcode setBackgroundColor:[UIColor whiteColor]];
+        [showqrcode setTitleColor:[UIColor colorWithRed:0.38 green:0.66 blue:0.87 alpha:1] forState:UIControlStateNormal];
+        showqrcode.layer.borderColor = [UIColor whiteColor].CGColor;
+        showqrcode.layer.borderWidth = 0.5f;
+        showqrcode.layer.cornerRadius = 32;
+        [showqrcode addTarget:self action:@selector(getonetimeqrcode:) forControlEvents:UIControlEventTouchUpInside];
+        showqrcode.tag = 0;
+        UIImageView *apicnview = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"alipay_icon.png"]];
+        apicnview.frame = CGRectMake(10, 10, showqrcode.frame.size.width-20, showqrcode.frame.size.height-20);
+        [showqrcode addSubview:apicnview];
+        
+        
+        [bottomview addSubview:showqrcode];
+    }
 }
 
 -(void)qrcamfnt {
@@ -409,6 +446,8 @@
         onetime_network = @"ALIPAY";
     } else if ([button tag] == 1) {
         onetime_network = @"WECHAT";
+    } else if ([button tag] == 2) {
+        onetime_network = @"CUP";
     }
     NSLog(@"The token %@", [defaults objectForKey:@"signature_secret"]);
     //NSString *acquireqrcodeurl = @"https://gateway.pa-sys.com/v1.0/offline/115e1da8-8d8a-4f9b-a8a8-302f866e4a95/acquire/qrcode";
@@ -599,7 +638,7 @@
     [invname removeFromSuperview];
     [doneview removeFromSuperview];
     [bottomcancelbutton removeFromSuperview];
-    doneview = [[UIView alloc] initWithFrame:CGRectMake(0, 70, curwidth, curheigh-70)];
+    doneview = [[UIView alloc] initWithFrame:CGRectMake(0, upperbar.frame.size.height, curwidth, curheigh-upperbar.frame.size.height)];
     doneview.backgroundColor = [UIColor whiteColor];
     NSLog(@"show qrcode %@", sender);
     
@@ -619,9 +658,9 @@
     showqrvalue.font = [UIFont systemFontOfSize:38];
     showqrvalue.text = [NSString stringWithFormat:@"HKD %@", theString];
     
-    
     UILabel *showinstruction = [[UILabel alloc] init];
     showinstruction.frame = CGRectMake(10, doneview.frame.size.height/2-(curwidth-20)/2 + curwidth-10, curwidth-20, 26);
+    showinstruction.textColor = [UIColor colorWithWhite:0.2 alpha:1];
     showinstruction.font = [UIFont systemFontOfSize:24];
     showinstruction.adjustsFontSizeToFitWidth = YES;
     showinstruction.textAlignment = NSTextAlignmentCenter;

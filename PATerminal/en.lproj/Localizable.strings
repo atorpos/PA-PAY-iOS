@@ -33,6 +33,7 @@
 "Retry and Close" = "Continue";
 "Payment Declined" = "Payment declined";
 "RESCAN" = "RESCAN";
+"SCAN"  = "SCAN";
 "Transcation Alert" = "Transaction alert";
 "dismiss" = "dismiss";
 "Error" = "Error";
@@ -72,3 +73,4 @@
 "Add Product" = "Add Product";
 "Create Item" = "Create Item";
 "View Promotions" = "View Promotions";
+"Notes" = "Notes";

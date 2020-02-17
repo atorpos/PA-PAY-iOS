@@ -198,7 +198,7 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
 -(void)localAuthchan {
     NSLog(@"value is on");
     NSError *authError = nil;
-    NSString *Localreasonstring = @"Bio ID test is on";
+    NSString *Localreasonstring = @"Bio ID is active";
     if ([context canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:&authError]) {
         [context evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics localizedReason:Localreasonstring reply:^(BOOL success, NSError *error) {
             if(success) {

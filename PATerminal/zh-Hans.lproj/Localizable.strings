@@ -33,6 +33,7 @@
 "Retry and Close" = "继续";
 "Payment Declined" = "交易失败";
 "RESCAN" = "重新扫描";
+"SCAN" = "扫描";
 "Transcation Alert" = "交易提示";
 "dismiss" = "关闭";
 "Error" = "错误";
@@ -70,3 +71,4 @@
 "Add Product" = "增加产品";
 "Create Item" = "增加产品";
 "View Promotions" = "最新推广资讯";
+"Notes" = "备注";

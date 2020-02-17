@@ -19,6 +19,8 @@
 		4964D7281FECBE00006F9956 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4964D7271FECBE00006F9956 /* CoreBluetooth.framework */; };
 		498BADBC20D1821E0011643B /* CNPPopupController.m in Sources */ = {isa = PBXBuildFile; fileRef = 498BADBA20D1821E0011643B /* CNPPopupController.m */; };
 		498D98912292FD0E00B06517 /* addcart.png in Resources */ = {isa = PBXBuildFile; fileRef = 498D98902292FD0E00B06517 /* addcart.png */; };
+		499E2C1B23C57DE00093549C /* pay.png in Resources */ = {isa = PBXBuildFile; fileRef = 499E2C1A23C57DE00093549C /* pay.png */; };
+		499E2C1D23C6A7620093549C /* unionpay_c.png in Resources */ = {isa = PBXBuildFile; fileRef = 499E2C1C23C6A7620093549C /* unionpay_c.png */; };
 		49C9A46A2390BECF006829D9 /* button-qr.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C9A4692390BECF006829D9 /* button-qr.png */; };
 		49C9A46C2390C1DD006829D9 /* button-qr-press.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C9A46B2390C1DD006829D9 /* button-qr-press.png */; };
 		49C9A46E2390CEEF006829D9 /* addcart_big.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C9A46D2390CEEF006829D9 /* addcart_big.png */; };
@@ -249,6 +251,8 @@
 		498BADBA20D1821E0011643B /* CNPPopupController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNPPopupController.m; sourceTree = "<group>"; };
 		498BADBB20D1821E0011643B /* CNPPopupController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNPPopupController.h; sourceTree = "<group>"; };
 		498D98902292FD0E00B06517 /* addcart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addcart.png; sourceTree = "<group>"; };
+		499E2C1A23C57DE00093549C /* pay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pay.png; sourceTree = "<group>"; };
+		499E2C1C23C6A7620093549C /* unionpay_c.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unionpay_c.png; sourceTree = "<group>"; };
 		49C9A4692390BECF006829D9 /* button-qr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-qr.png"; sourceTree = "<group>"; };
 		49C9A46B2390C1DD006829D9 /* button-qr-press.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-qr-press.png"; sourceTree = "<group>"; };
 		49C9A46D2390CEEF006829D9 /* addcart_big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addcart_big.png; sourceTree = SOURCE_ROOT; };
@@ -685,6 +689,7 @@
 				731CE32022A1299E0076A226 /* login_1.png */,
 				49C9A4692390BECF006829D9 /* button-qr.png */,
 				49C9A46B2390C1DD006829D9 /* button-qr-press.png */,
+				499E2C1A23C57DE00093549C /* pay.png */,
 				498D98902292FD0E00B06517 /* addcart.png */,
 				731E8E1A214650C50003641B /* screen_01.png */,
 				731E8E1B214650C60003641B /* screen_02.png */,
@@ -704,6 +709,7 @@
 				4960C97B1FD7F5BE004ABA68 /* mid_qr_logo.png */,
 				4950772F1FCD22B200C5A633 /* alipay_c.png */,
 				731B40EA20A948E0007FBE20 /* paypal_c.png */,
+				499E2C1C23C6A7620093549C /* unionpay_c.png */,
 				49E4772E1FC7E92400DC1077 /* block.png */,
 				495077311FCD23DF00C5A633 /* success_tb.png */,
 				73A080CE204E61CE007E9598 /* waiting.png */,
@@ -1217,6 +1223,7 @@
 				73AB770220F4AA960073BB13 /* wechat_c.png in Resources */,
 				49C9A46E2390CEEF006829D9 /* addcart_big.png in Resources */,
 				7322DDD9208848F900A5E7E6 /* uncheck.png in Resources */,
+				499E2C1D23C6A7620093549C /* unionpay_c.png in Resources */,
 				49E4771C1FC7BCE100DC1077 /* history@3x.png in Resources */,
 				73B936DC2050EFBC00CAFCAF /* beep.mp3 in Resources */,
 				49E477251FC7BDCE00DC1077 /* card_t.png in Resources */,
@@ -1261,6 +1268,7 @@
 				498D98912292FD0E00B06517 /* addcart.png in Resources */,
 				730913D01FB43FE700FBABDD /* setting@2x.png in Resources */,
 				49E4772F1FC7E92400DC1077 /* block.png in Resources */,
+				499E2C1B23C57DE00093549C /* pay.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1574,7 +1582,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 121;
+				CURRENT_PROJECT_VERSION = 123;
 				DEVELOPMENT_TEAM = LQ32KV5FC4;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1586,7 +1594,7 @@
 				INFOPLIST_FILE = PATerminal/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.55;
+				MARKETING_VERSION = 1.56;
 				OTHER_LDFLAGS = (
 					"$(OTHER_LDFLAGS)",
 					"-ObjC",
@@ -1608,7 +1616,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 121;
+				CURRENT_PROJECT_VERSION = 123;
 				DEVELOPMENT_TEAM = LQ32KV5FC4;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1619,7 +1627,7 @@
 				INFOPLIST_FILE = PATerminal/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.55;
+				MARKETING_VERSION = 1.56;
 				OTHER_LDFLAGS = (
 					"$(OTHER_LDFLAGS)",
 					"-ObjC",
@@ -1699,12 +1707,12 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 121;
+				CURRENT_PROJECT_VERSION = 123;
 				DEVELOPMENT_TEAM = LQ32KV5FC4;
 				INFOPLIST_FILE = PATerminal_widget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 1.55;
+				MARKETING_VERSION = 1.56;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.paymentasia.papay.PATerminal-widget";
@@ -1723,12 +1731,12 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 121;
+				CURRENT_PROJECT_VERSION = 123;
 				DEVELOPMENT_TEAM = LQ32KV5FC4;
 				INFOPLIST_FILE = PATerminal_widget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 1.55;
+				MARKETING_VERSION = 1.56;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.paymentasia.papay.PATerminal-widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -23,6 +23,8 @@
 
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+        
+    
     NSLog(@"it is the first view");
     standardef = [NSUserDefaults standardUserDefaults];
     if ([standardef objectForKey:@"ischecked"]) {
@@ -58,9 +60,22 @@
     //UIImage *bgimg = [UIImage imageNamed:@"app_background.png"];
     //UIImageView *mainview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, curwidth, curheigh)];
     //[mainview setImage:bgimg];
-    loginbgview = [[UIView alloc] initWithFrame:CGRectMake(10, 60, curwidth-20, 430)];
-    loginbgview.backgroundColor = [UIColor colorWithWhite:1 alpha:0.8];
-    loginbgview.layer.cornerRadius = 5.0;
+    
+    if (@available(iOS 12.0, *)) {
+        if (self.traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
+            loginbgview = [[UIView alloc] initWithFrame:CGRectMake(10, 60, curwidth-20, 430)];
+            loginbgview.backgroundColor = [UIColor colorWithWhite:0.1 alpha:0.8];
+            loginbgview.layer.cornerRadius = 5.0;
+        } else {
+            loginbgview = [[UIView alloc] initWithFrame:CGRectMake(10, 60, curwidth-20, 430)];
+            loginbgview.backgroundColor = [UIColor colorWithWhite:1 alpha:0.8];
+            loginbgview.layer.cornerRadius = 5.0;
+        }
+    } else {
+        // Fallback on earlier versions
+    }
+    
+    
     
     UIImageView *logoview = [[UIImageView alloc] initWithFrame:CGRectMake(loginbgview.frame.size.width/2-122, 30, 244, 59)];
     UIImage *applogo = [UIImage imageNamed:@"OpeningPG_logo.png"];
