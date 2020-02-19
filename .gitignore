@@ -1,0 +1,8 @@
+Podfile
+Podfile.lock
+service.pch
+Crashlytics.framework
+Fabric.framework
+*.DS_Store
+PATerminal/.DS_Store
+*.pch
