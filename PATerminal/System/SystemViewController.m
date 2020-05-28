@@ -12,6 +12,7 @@
 #import "LoginViewController.h"
 #import "writefiles.h"
 
+@import Charts;
 @interface SystemViewController ()
 
 @end
@@ -34,7 +35,8 @@
     [self.navigationItem setRightBarButtonItem:item];
     
     writefileclass = [[writefiles alloc] init];
-    mainview = [[UIWebView alloc] init];
+    mainview = [[WKWebView alloc] init];
+    mainview.navigationDelegate = self;
     mainview.backgroundColor = [UIColor whiteColor];
     //http://gateway.adam-lok.pa-sys.com/alipay/message
     urlstring = [NSString stringWithFormat:@"https://merchant.pa-sys.com/terminal-summary/weekly?token=%@", [standardUser objectForKey:@"signtoken"]];
@@ -78,9 +80,15 @@
     
 }
 -(void)viewDidAppear:(BOOL)animated {
-    NSLog(@"the cg tab bar %f",curheigh);
+    UIWindow *window = UIApplication.sharedApplication.windows.firstObject;
+    CGFloat topPadding = window.safeAreaInsets.top;
+    CGFloat bottomPadding = window.safeAreaInsets.bottom;
+    UITabBarController *tabbar = [[UITabBarController alloc] init];
+    CGFloat tabbarheight = tabbar.tabBar.frame.size.height;
+    UINavigationController *navbar = [[UINavigationController alloc] init];
+    CGFloat navbarheight = navbar.navigationBar.frame.size.height;
     
-    mainview.frame = CGRectMake(0, 0, curwidth, curheigh-98);
+    mainview.frame = CGRectMake(0, 0, curwidth, curheigh-topPadding-bottomPadding-tabbarheight-navbarheight);
     NSString *poststring = [NSString stringWithFormat:@"token=%@", [standardUser objectForKey:@"signtoken"]];
     NSData *postData = [poststring dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
     NSString *postlength = [NSString stringWithFormat:@"%lu",(unsigned long)[poststring length]];
@@ -99,7 +107,7 @@
     if ([pagedetect isEqualToString:@"<!DOCT"]) {
         [mainview loadRequest:requesturl];
         mainview.backgroundColor = [UIColor whiteColor];
-        mainview.delegate = self;
+        mainview.navigationDelegate = self;
     } else {
         [self performSelector:@selector(cancelallsession:) withObject:nil afterDelay:0];
         // wrong format;
@@ -176,7 +184,7 @@
     loadingbgview.frame = CGRectMake(0, 0, curwidth, curheigh);
     loadingbgview.backgroundColor = [UIColor colorWithWhite:1.0 alpha:1];
     [self.view addSubview:loadingbgview];
-    loadingviewsp = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    loadingviewsp = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleLarge];
     [loadingviewsp setCenter:CGPointMake(curwidth/2, curheigh/2)];
     [loadingbgview addSubview:loadingviewsp];
     [loadingviewsp startAnimating];
@@ -186,14 +194,15 @@
     [loadingviewsp removeFromSuperview];
     [loadingbgview removeFromSuperview];
 }
--(void)webViewDidStartLoad:(UIWebView *)webView {
+
+-(void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation {
     [self loadingview];
 }
--(void)webViewDidFinishLoad:(UIWebView *)webView {
+-(void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     [bgview addSubview:mainview];
     [self stoploadingview];
 }
--(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+-(BOOL)webView:(WKWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     NSURL *newurl = request.URL;
     NSString *urlstring = newurl.absoluteString;
     NSLog(@"theurl string %@ - %ld", urlstring, (long)navigationType);

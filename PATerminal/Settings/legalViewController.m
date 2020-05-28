@@ -25,7 +25,7 @@
     weblinkstring = @"https://merchant.pa-sys.com/alipay/tnc";
     
     activityView = [[UIActivityIndicatorView alloc]
-                    initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+                    initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleMedium];
     
     activityView.center=self.view.center;
     
@@ -33,9 +33,9 @@
     
     NSURL *url = [NSURL URLWithString:weblinkstring];
     NSURLRequest *requesturl = [NSURLRequest requestWithURL:url];
-    webview = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, curwidth, curheigh-0)];
+    webview = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, curwidth, curheigh-0)];
     [webview loadRequest:requesturl];
-    webview.delegate = self;
+    webview.navigationDelegate = self;
     /*
      if ([websetting isEqualToString:@"social"]) {
      openinweb = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -56,14 +56,15 @@
     [self.view addSubview:activityView];
     
 }
--(void)webViewDidStartLoad:(UIWebView *)webView {
+-(void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
+    [activityView setHidden:YES];
+}
+-(void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation {
     writefileclass = [[writefiles alloc] init];
     [writefileclass setpageview:@"legal.view"];
     [activityView startAnimating];
 }
--(void)webViewDidFinishLoad:(UIWebView *)webView {
-    [activityView setHidden:YES];
-}
+
 -(IBAction)cancelpage:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }

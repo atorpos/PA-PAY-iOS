@@ -25,39 +25,43 @@
     standardef = [NSUserDefaults standardUserDefaults];
     curwidth = [UIScreen mainScreen].bounds.size.width;
     curheigh = [UIScreen mainScreen].bounds.size.height;
+    UIWindow *window = UIApplication.sharedApplication.windows.firstObject;
+    
     if (@available(iOS 11.0, *)) {
-        safeheight = UIApplication.sharedApplication.keyWindow.safeAreaInsets.top + UIApplication.sharedApplication.keyWindow.safeAreaInsets.bottom;
+        safeheight = window.safeAreaInsets.top + window.safeAreaInsets.bottom;
     } else {
         // Fallback on earlier versions
     }
     topview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, curwidth, 48)];
     if (@available(iOS 11.0, *)) {
-        bottomview = [[UIView alloc] initWithFrame:CGRectMake(0, curheigh-safeheight-65, curwidth, 65+UIApplication.sharedApplication.keyWindow.safeAreaInsets.bottom)];
+        bottomview = [[UIView alloc] initWithFrame:CGRectMake(0, curheigh-safeheight-65, curwidth, 65+window.safeAreaInsets.bottom)];
     } else {
         // Fallback on earlier versions
     }
     bottomview.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1];
-    mainview = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, curwidth, curheigh-65-safeheight)];
+    mainview = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, curwidth, curheigh-65-safeheight)];
     mainview.backgroundColor = [UIColor whiteColor];
     tncstring  = @"https://merchant.pa-sys.com/alipay/tnc";
     
     
     
     activityView = [[UIActivityIndicatorView alloc]
-                    initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+                    initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleLarge];
     
     activityView.center=self.view.center;
     
     NSURL *url = [NSURL URLWithString:tncstring];
     NSURLRequest *requesturl = [NSURLRequest requestWithURL:url];
     [mainview loadRequest:requesturl];
-    mainview.delegate = self;
+    mainview.UIDelegate = self;
     mainview.scrollView.scrollEnabled = YES;
     mainview.scrollView.bounces = YES;
+    mainview.navigationDelegate = self;
     [self.view addSubview:mainview];
     [self.view addSubview:topview];
     [self.view addSubview:bottomview];
     [self.view addSubview:activityView];
+    [self addbutton];
     
 }
 -(void)addbutton {
@@ -81,15 +85,28 @@
     [bottomview addSubview:declinebutton];
     [bottomview addSubview:acceptbutton];
 }
--(void)webViewDidStartLoad:(UIWebView *)webView {
+
+-(void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation {
     writefileclass = [[writefiles alloc] init];
     [writefileclass setpageview:@"tandc.view"];
     [activityView startAnimating];
 }
--(void)webViewDidFinishLoad:(UIWebView *)webView {
+
+-(void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     [activityView setHidden:YES];
     [self addbutton];
 }
+
+//-(void)webViewDidStartLoad:(UIWebView *)webView {
+//    writefileclass = [[writefiles alloc] init];
+//    [writefileclass setpageview:@"tandc.view"];
+//    [activityView startAnimating];
+//}
+//-(void)webViewDidFinishLoad:(UIWebView *)webView {
+//    [activityView setHidden:YES];
+//    [self addbutton];
+//}
+
 -(void)cancelsession {
     NSLog(@"cancel session");
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -146,7 +163,7 @@
     loadingbgview.frame = CGRectMake(0, 0, curwidth, curheigh);
     loadingbgview.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.5];
     [self.view addSubview:loadingbgview];
-    loadingviewsp = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    loadingviewsp = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleLarge];
     [loadingviewsp setCenter:CGPointMake(curwidth/2, curheigh/2)];
     [loadingbgview addSubview:loadingviewsp];
     [loadingviewsp startAnimating];

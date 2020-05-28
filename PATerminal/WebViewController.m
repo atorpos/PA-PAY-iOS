@@ -23,7 +23,7 @@
     weblinkstring = @"https://www.google.com/";
     
     activityView = [[UIActivityIndicatorView alloc]
-                    initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+                    initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleLarge];
     
     activityView.center=self.view.center;
     
@@ -31,9 +31,9 @@
     
     NSURL *url = [NSURL URLWithString:weblinkstring];
     NSURLRequest *requesturl = [NSURLRequest requestWithURL:url];
-    webview = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, curwidth, curheigh-0)];
+    webview = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, curwidth, curheigh-0)];
     [webview loadRequest:requesturl];
-    webview.delegate = self;
+    webview.UIDelegate = self;
     /*
     if ([websetting isEqualToString:@"social"]) {
         openinweb = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -54,12 +54,13 @@
     [self.view addSubview:activityView];
     
 }
--(void)webViewDidStartLoad:(UIWebView *)webView {
+-(void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation {
     [activityView startAnimating];
 }
--(void)webViewDidFinishLoad:(UIWebView *)webView {
+-(void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     [activityView setHidden:YES];
 }
+
 -(IBAction)cancelpage:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }

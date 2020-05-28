@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <WebKit/WebKit.h>
 
-@interface WebViewController : UIViewController<UIWebViewDelegate> {
+@interface WebViewController : UIViewController<UIWebViewDelegate, WKUIDelegate, WKNavigationDelegate> {
     CGFloat curwidth;
     CGFloat curheigh;
-    UIWebView *webview;
+    WKWebView *webview;
     UIActivityIndicatorView *activityView;
     IBOutlet UIButton *openinweb;
     IBOutlet UIButton *cancelbutton;

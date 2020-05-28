@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4480EAA18E175586EF8B5ABB /* Pods_PATerminal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 268E33B0E59EBF72B5D0819A /* Pods_PATerminal.framework */; };
 		492517E62366A92400CF8734 /* ScanInvoiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 492517E52366A92400CF8734 /* ScanInvoiceViewController.m */; };
 		493D75BD1FCB2DDD00EF676B /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 493D75BC1FCB2DD800EF676B /* AddressBookUI.framework */; };
 		493FD5B6200723ED000E6F88 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 493FD5B5200723ED000E6F88 /* WebViewController.m */; };
@@ -17,6 +18,7 @@
 		495077371FCD36C400C5A633 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 495077361FCD36C300C5A633 /* Reachability.m */; };
 		4960C97C1FD7F5BE004ABA68 /* mid_qr_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 4960C97B1FD7F5BE004ABA68 /* mid_qr_logo.png */; };
 		4964D7281FECBE00006F9956 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4964D7271FECBE00006F9956 /* CoreBluetooth.framework */; };
+		496A0AE724654C0600C9939C /* ContactsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 496A0AE624654C0600C9939C /* ContactsUI.framework */; };
 		498BADBC20D1821E0011643B /* CNPPopupController.m in Sources */ = {isa = PBXBuildFile; fileRef = 498BADBA20D1821E0011643B /* CNPPopupController.m */; };
 		498D98912292FD0E00B06517 /* addcart.png in Resources */ = {isa = PBXBuildFile; fileRef = 498D98902292FD0E00B06517 /* addcart.png */; };
 		499E2C1B23C57DE00093549C /* pay.png in Resources */ = {isa = PBXBuildFile; fileRef = 499E2C1A23C57DE00093549C /* pay.png */; };
@@ -37,6 +39,9 @@
 		49E4772C1FC7BDDF00DC1077 /* cloud@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49E4772A1FC7BDDE00DC1077 /* cloud@3x.png */; };
 		49E4772D1FC7BDDF00DC1077 /* cloud@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49E4772B1FC7BDDF00DC1077 /* cloud@2x.png */; };
 		49E4772F1FC7E92400DC1077 /* block.png in Resources */ = {isa = PBXBuildFile; fileRef = 49E4772E1FC7E92400DC1077 /* block.png */; };
+		49EC92A62473E4DA001B507C /* ReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49EC92A52473E4DA001B507C /* ReportViewController.m */; };
+		49EC92A824751251001B507C /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 49EC92A724751251001B507C /* Montserrat-Medium.ttf */; };
+		49EC92A924751251001B507C /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 49EC92A724751251001B507C /* Montserrat-Medium.ttf */; };
 		7300F7851FC2C52D00591483 /* RemoveTenderGlyph@3x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 7300F7841FC2C52D00591483 /* RemoveTenderGlyph@3x~iphone.png */; };
 		730109271FB2C9CD00E9AA2C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 730109261FB2C9CD00E9AA2C /* AppDelegate.m */; };
 		7301092A1FB2C9CD00E9AA2C /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 730109291FB2C9CD00E9AA2C /* FirstViewController.m */; };
@@ -232,6 +237,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		268E33B0E59EBF72B5D0819A /* Pods_PATerminal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PATerminal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D6B4E516B6667F499BC2CA6 /* Pods-PATerminal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PATerminal.release.xcconfig"; path = "Target Support Files/Pods-PATerminal/Pods-PATerminal.release.xcconfig"; sourceTree = "<group>"; };
 		490E64522088F55C00481856 /* ARKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ARKit.framework; path = System/Library/Frameworks/ARKit.framework; sourceTree = SDKROOT; };
 		492517E42366A92400CF8734 /* ScanInvoiceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScanInvoiceViewController.h; sourceTree = "<group>"; };
 		492517E52366A92400CF8734 /* ScanInvoiceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScanInvoiceViewController.m; sourceTree = "<group>"; };
@@ -248,6 +255,8 @@
 		4960C97B1FD7F5BE004ABA68 /* mid_qr_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mid_qr_logo.png; sourceTree = "<group>"; };
 		4960C97D1FD8023E004ABA68 /* pa_logo_1200x180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pa_logo_1200x180.png; sourceTree = "<group>"; };
 		4964D7271FECBE00006F9956 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		496A0AE624654C0600C9939C /* ContactsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ContactsUI.framework; path = System/Library/Frameworks/ContactsUI.framework; sourceTree = SDKROOT; };
+		497159D1247CDBD700B07907 /* PATerminal-Swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PATerminal-Swift.h"; sourceTree = "<group>"; };
 		498BADBA20D1821E0011643B /* CNPPopupController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNPPopupController.m; sourceTree = "<group>"; };
 		498BADBB20D1821E0011643B /* CNPPopupController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNPPopupController.h; sourceTree = "<group>"; };
 		498D98902292FD0E00B06517 /* addcart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addcart.png; sourceTree = "<group>"; };
@@ -273,6 +282,9 @@
 		49E4772A1FC7BDDE00DC1077 /* cloud@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cloud@3x.png"; sourceTree = "<group>"; };
 		49E4772B1FC7BDDF00DC1077 /* cloud@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cloud@2x.png"; sourceTree = "<group>"; };
 		49E4772E1FC7E92400DC1077 /* block.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = block.png; sourceTree = "<group>"; };
+		49EC92A42473E4DA001B507C /* ReportViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReportViewController.h; sourceTree = "<group>"; };
+		49EC92A52473E4DA001B507C /* ReportViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReportViewController.m; sourceTree = "<group>"; };
+		49EC92A724751251001B507C /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Medium.ttf"; sourceTree = "<group>"; };
 		7300F7841FC2C52D00591483 /* RemoveTenderGlyph@3x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RemoveTenderGlyph@3x~iphone.png"; sourceTree = "<group>"; };
 		730109221FB2C9CC00E9AA2C /* PATerminal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PATerminal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		730109251FB2C9CD00E9AA2C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -500,6 +512,7 @@
 		73FE879721F86F7F0010CCED /* papay_frameworks.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = papay_frameworks.m; sourceTree = "<group>"; };
 		73FFE0B420D3A92B00A810EC /* EditProductViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditProductViewController.h; sourceTree = "<group>"; };
 		73FFE0B520D3A92B00A810EC /* EditProductViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditProductViewController.m; sourceTree = "<group>"; };
+		7EDBB7B2B856908C0A3638A0 /* Pods-PATerminal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PATerminal.debug.xcconfig"; path = "Target Support Files/Pods-PATerminal/Pods-PATerminal.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -528,8 +541,10 @@
 				730FDF1D1FBA9E1000D798FE /* CoreImage.framework in Frameworks */,
 				73B277DD2063AB680020595A /* FirebaseInstanceID.framework in Frameworks */,
 				73E25EA41FB97F9E0020EAD2 /* QuartzCore.framework in Frameworks */,
+				496A0AE724654C0600C9939C /* ContactsUI.framework in Frameworks */,
 				73B9D4E72060B79200308C68 /* FirebaseCoreDiagnostics.framework in Frameworks */,
 				731BE5CA20E0AFDB0023A0C2 /* SMCloudServices.framework in Frameworks */,
+				4480EAA18E175586EF8B5ABB /* Pods_PATerminal.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -590,6 +605,7 @@
 				739223EC22EFFA120011881B /* PATerminal_widget */,
 				730109231FB2C9CC00E9AA2C /* Products */,
 				73E25EA21FB97F8F0020EAD2 /* Frameworks */,
+				F9A28466AC3C375F1D06071E /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -654,6 +670,7 @@
 				730109311FB2C9CD00E9AA2C /* Assets.xcassets */,
 				730109331FB2C9CD00E9AA2C /* LaunchScreen.storyboard */,
 				730109361FB2C9CD00E9AA2C /* Info.plist */,
+				497159D1247CDBD700B07907 /* PATerminal-Swift.h */,
 				730109371FB2C9CD00E9AA2C /* main.m */,
 				73B936DB2050EFBB00CAFCAF /* beep.mp3 */,
 				730913BC1FB3F8C500FBABDD /* GUI */,
@@ -736,6 +753,7 @@
 				73E25EA81FB99AE60020EAD2 /* alipay_icon.png */,
 				49C9A46F2390E0F1006829D9 /* 176MKA__.TTF */,
 				730FDF281FBAF5C000D798FE /* Avenir Next.ttc */,
+				49EC92A724751251001B507C /* Montserrat-Medium.ttf */,
 				730FDF1E1FBAAE4C00D798FE /* Signika-Regular.otf */,
 				73E25EA61FB992B90020EAD2 /* ProximaNovaAlta-Light.otf */,
 				73E25E971FB9447F0020EAD2 /* Launching Screen_640_1136.jpg */,
@@ -882,6 +900,8 @@
 			children = (
 				49E477171FC7B77B00DC1077 /* SystemViewController.h */,
 				49E477181FC7B77B00DC1077 /* SystemViewController.m */,
+				49EC92A42473E4DA001B507C /* ReportViewController.h */,
+				49EC92A52473E4DA001B507C /* ReportViewController.m */,
 			);
 			path = System;
 			sourceTree = "<group>";
@@ -997,6 +1017,7 @@
 		73E25EA21FB97F8F0020EAD2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				496A0AE624654C0600C9939C /* ContactsUI.framework */,
 				73DB447D211C019D00A6D9AE /* SMCloudServicesResources.bundle */,
 				73036EDC210059200005172D /* LocalAuthentication.framework */,
 				7364375F20D90CA2008ABA8D /* ExternalAccessory.framework */,
@@ -1012,6 +1033,7 @@
 				73E25EA51FB97FAF0020EAD2 /* AVFoundation.framework */,
 				73E25EA31FB97F8F0020EAD2 /* QuartzCore.framework */,
 				739223EA22EFFA120011881B /* NotificationCenter.framework */,
+				268E33B0E59EBF72B5D0819A /* Pods_PATerminal.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1040,6 +1062,15 @@
 			path = EditProducts;
 			sourceTree = "<group>";
 		};
+		F9A28466AC3C375F1D06071E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7EDBB7B2B856908C0A3638A0 /* Pods-PATerminal.debug.xcconfig */,
+				2D6B4E516B6667F499BC2CA6 /* Pods-PATerminal.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1047,11 +1078,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 730109511FB2C9CD00E9AA2C /* Build configuration list for PBXNativeTarget "PATerminal" */;
 			buildPhases = (
+				CE484BC80722EDD5DB2AD3ED /* [CP] Check Pods Manifest.lock */,
 				7301091E1FB2C9CC00E9AA2C /* Sources */,
 				7301091F1FB2C9CC00E9AA2C /* Frameworks */,
 				730109201FB2C9CC00E9AA2C /* Resources */,
 				73E5E4B12191394400A0E5D2 /* Embed Watch Content */,
 				739223FA22EFFA120011881B /* Embed App Extensions */,
+				8D003CD29C35D0C5D264FDDF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1224,6 +1257,7 @@
 				49C9A46E2390CEEF006829D9 /* addcart_big.png in Resources */,
 				7322DDD9208848F900A5E7E6 /* uncheck.png in Resources */,
 				499E2C1D23C6A7620093549C /* unionpay_c.png in Resources */,
+				49EC92A824751251001B507C /* Montserrat-Medium.ttf in Resources */,
 				49E4771C1FC7BCE100DC1077 /* history@3x.png in Resources */,
 				73B936DC2050EFBC00CAFCAF /* beep.mp3 in Resources */,
 				49E477251FC7BDCE00DC1077 /* card_t.png in Resources */,
@@ -1291,11 +1325,57 @@
 			buildActionMask = 2147483647;
 			files = (
 				739223F222EFFA120011881B /* MainInterface.storyboard in Resources */,
+				49EC92A924751251001B507C /* Montserrat-Medium.ttf in Resources */,
 				739223FE22F0215A0011881B /* dummy_qr.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8D003CD29C35D0C5D264FDDF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PATerminal/Pods-PATerminal-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+				"${BUILT_PRODUCTS_DIR}/SBJson/SBJson.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SBJson.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PATerminal/Pods-PATerminal-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CE484BC80722EDD5DB2AD3ED /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PATerminal-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7301091E1FB2C9CC00E9AA2C /* Sources */ = {
@@ -1364,6 +1444,7 @@
 				73C982B121FAFBF800659F32 /* papay_info.m in Sources */,
 				7316B45B20C100B3005A5D92 /* AddPhotoImgViewController.m in Sources */,
 				7317BA8B20807D52005BAA9F /* AboutViewController.m in Sources */,
+				49EC92A62473E4DA001B507C /* ReportViewController.m in Sources */,
 				73A080BC204E50A4007E9598 /* SDWebImageCompat.m in Sources */,
 				73A080C6204E50A4007E9598 /* UIImageView+HighlightedWebCache.m in Sources */,
 				73A080CA204E50A4007E9598 /* UIImageView+WebCache.m in Sources */,
@@ -1576,13 +1657,14 @@
 		};
 		730109521FB2C9CD00E9AA2C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7EDBB7B2B856908C0A3638A0 /* Pods-PATerminal.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = PATerminal/PATerminal.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 123;
+				CURRENT_PROJECT_VERSION = 134;
 				DEVELOPMENT_TEAM = LQ32KV5FC4;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1592,9 +1674,9 @@
 					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = PATerminal/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.56;
+				MARKETING_VERSION = 2.0.2;
 				OTHER_LDFLAGS = (
 					"$(OTHER_LDFLAGS)",
 					"-ObjC",
@@ -1610,13 +1692,14 @@
 		};
 		730109531FB2C9CD00E9AA2C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2D6B4E516B6667F499BC2CA6 /* Pods-PATerminal.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = PATerminal/PATerminal.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 123;
+				CURRENT_PROJECT_VERSION = 134;
 				DEVELOPMENT_TEAM = LQ32KV5FC4;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1625,9 +1708,9 @@
 					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = PATerminal/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.56;
+				MARKETING_VERSION = 2.0.2;
 				OTHER_LDFLAGS = (
 					"$(OTHER_LDFLAGS)",
 					"-ObjC",
@@ -1707,12 +1790,12 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 123;
+				CURRENT_PROJECT_VERSION = 134;
 				DEVELOPMENT_TEAM = LQ32KV5FC4;
 				INFOPLIST_FILE = PATerminal_widget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 1.56;
+				MARKETING_VERSION = 2.0.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.paymentasia.papay.PATerminal-widget";
@@ -1731,12 +1814,12 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 123;
+				CURRENT_PROJECT_VERSION = 134;
 				DEVELOPMENT_TEAM = LQ32KV5FC4;
 				INFOPLIST_FILE = PATerminal_widget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 1.56;
+				MARKETING_VERSION = 2.0.2;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.paymentasia.papay.PATerminal-widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -34,6 +34,12 @@
     //UIView *mainview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, curwidth, curheigh)];
     writefileclass = [[writefiles alloc] init];
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"SCAN", nil) style:UIBarButtonItemStylePlain target:self action:@selector(showcam)];
+    UIBarButtonItem *itemleft = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"FILTER", nil) style:UIBarButtonItemStylePlain target:self action:@selector(navtap:)];
+    
+    getdatpick = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(navtap:)];
+    [getdatpick setNumberOfTapsRequired:1];
+    [getdatpick setNumberOfTouchesRequired:1];
+    [self.navigationController.navigationBar addGestureRecognizer:getdatpick];
     
     twofingers= [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
     [twofingers setNumberOfTouchesRequired:2];
@@ -56,7 +62,11 @@
     
     [self.view addGestureRecognizer:longpress];
     
-    [self.navigationItem setRightBarButtonItem:item];
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        [self.navigationItem setRightBarButtonItem:item];
+    }
+    
+    [self.navigationItem setLeftBarButtonItem:itemleft];
     [self showbutton];
     
 }
@@ -129,6 +139,46 @@
     
     [task resume];
 }
+-(void)openpickdate {
+    UIWindow *window = UIApplication.sharedApplication.windows.firstObject;
+    CGFloat safeheight = [UIScreen mainScreen].bounds.size.height - window.safeAreaInsets.top - window.safeAreaInsets.bottom;
+    NSDate *today = [NSDate date];
+    datepicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, safeheight-200, self.view.frame.size.width, 200)];
+    datepicker.datePickerMode = UIDatePickerModeDate;
+    datepicker.backgroundColor = [UIColor whiteColor];
+    
+    [datepicker setMaximumDate:today];
+    [datepicker addTarget:self action:@selector(onDatePickerZValueChanged:) forControlEvents:UIControlEventValueChanged];
+    
+    
+    toolBar= [[UIToolbar alloc] initWithFrame:CGRectMake(0,safeheight-200,self.view.frame.size.width,44)];
+    [toolBar setBarStyle:UIBarStyleDefault];
+    UIBarButtonItem *flexible = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
+    UIBarButtonItem *barButtonDone = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(donepicker:)];
+    
+    [toolBar setItems:[NSArray arrayWithObjects:flexible,  barButtonDone, nil]];
+    toolBar.items = @[barButtonDone];
+    barButtonDone.tintColor=[UIColor blackColor];
+    
+    
+    [self.view addSubview:datepicker];
+    [self.view addSubview:toolBar];
+    
+    
+}
+
+-(void)onDatePickerZValueChanged:(UIDatePicker *)datePicker {
+    NSLog(@"date change %f", [datePicker.date timeIntervalSince1970]);
+    recorddate = [datePicker.date timeIntervalSince1970];
+    
+}
+-(void)donepicker:(NSString *)string {
+    NSLog(@"done button");
+    [self checktranscation];
+    [toolBar removeFromSuperview];
+    [datepicker removeFromSuperview];
+}
+
 -(IBAction)selectdatetypetransaction:(id)sender
 {
     
@@ -182,6 +232,7 @@
     [self stoploadingview];
     [refreshcontrol endRefreshing];
     [tableview reloadData];
+    
 }
 -(void) norecord {
 //    [tableview removeFromSuperview];
@@ -330,7 +381,7 @@
     loadingbgview.frame = CGRectMake(0, 0, curwidth, curheigh);
     loadingbgview.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.5];
     [self.view addSubview:loadingbgview];
-    loadingview = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    loadingview = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleLarge];
     [loadingview setCenter:CGPointMake(curwidth/2, curheigh/2)];
     [loadingbgview addSubview:loadingview];
     [loadingview startAnimating];
@@ -363,6 +414,11 @@
 {
     recorddate = ti;
     [self checktranscation];
+}
+
+-(void)navtap:(UIPanGestureRecognizer *)gestureRecognizer {
+    
+    [self openpickdate];
 }
 
 /*

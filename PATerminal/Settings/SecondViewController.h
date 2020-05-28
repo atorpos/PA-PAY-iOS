@@ -24,6 +24,7 @@
     NSUserDefaults *standardUser;
     IBOutlet UIButton *logoutbutton;
     IBOutlet UIButton *registbutton;
+    IBOutlet UIButton *twoFAbutton;
     LoginViewController *loginview;
     AboutViewController *aboutview;
     HelpViewController *helpview;
@@ -46,5 +47,6 @@
 @property (strong, nonatomic) IBOutlet UITableView *tableview;
 @property (strong, nonatomic) IBOutlet UISwitch *securityswitch;
 @property (strong, nonatomic) IBOutlet UISwitch *modeswitch;
+@property (strong, nonatomic) IBOutlet UISwitch *restswitch;
 @end
 

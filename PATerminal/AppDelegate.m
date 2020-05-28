@@ -15,10 +15,12 @@
 #import "TabBarViewController.h"
 #import "Scan/ScanViewController.h"
 #import "services.pch"
+#import "papay_frameworks.h"
 
 @interface AppDelegate ()
 
 @end
+
 
 @implementation AppDelegate
 NSString *const kGCMMessageIDKey = @"gcm.message_id";
@@ -26,9 +28,11 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
-    NSString * language = [[NSLocale preferredLanguages] firstObject];
     
-
+    
+    NSLog(@"user interface %ld name %@ ", (long)[[UIDevice currentDevice] userInterfaceIdiom], [[UIDevice currentDevice] name]);
+    NSString * language = [[NSLocale preferredLanguages] firstObject];
+    int usecount = 0;
     //[Fabric with:@[[Crashlytics class]]];
     [FIRApp configure];
     [FIRMessaging messaging].delegate = self;
@@ -41,6 +45,8 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
     } else {
         NSLog(@"no url");
     }
+   
+
     writeclass = [[writefiles alloc] init];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNetworkChange:) name:kReachabilityChangedNotification object:nil];
     reachability = [Reachability reachabilityForInternetConnection];
@@ -50,6 +56,13 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
     UIUserNotificationSettings* notificationSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];
     [[UIApplication sharedApplication] registerUserNotificationSettings:notificationSettings];
     standardUser = [NSUserDefaults standardUserDefaults];
+    NSLog(@"show the values %@", [standardUser dictionaryRepresentation]);
+    if (![standardUser objectForKey:@"usetime"]) {
+        [standardUser setObject:@"0" forKey:@"usetime"];
+    }
+    usecount =  [[standardUser objectForKey:@"usetime"] intValue] + 1;
+    
+    [standardUser setObject:[NSString stringWithFormat:@"%d", usecount] forKey:@"usetime"];
     NSString *version =[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
     if (![standardUser objectForKey:@"appversion"] || ![[standardUser objectForKey:@"appversion"] isEqualToString:version]) {
         NSLog(@"remove all login session");
@@ -59,6 +72,7 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
         [standardUser removeObjectForKey:@"responsetime"];
         [standardUser removeObjectForKey:@"signtoken"];
         [standardUser removeObjectForKey:@"signature_secret"];
+        [standardUser removeObjectForKey:@"usetime"];
     }
         
     [standardUser setObject:@"HKD" forKey:@"usercurrency"];
@@ -205,11 +219,21 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
                 NSLog(@"success");
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self->backgroundview removeFromSuperview];
+                    self->paypayframework = [[papay_frameworks alloc] init];
+                    [self->paypayframework login];
                     [self.window.rootViewController performSegueWithIdentifier:@"LogedView" sender:self.window.rootViewController];
                 });
             } else {
                 NSLog(@"fail");
                 dispatch_async(dispatch_get_main_queue(), ^{
+                    [self->standardUser removeObjectForKey:@"MerchID"];
+                    [self->standardUser removeObjectForKey:@"loginid"];
+                    [self->standardUser removeObjectForKey:@"requsttime"];
+                    [self->standardUser removeObjectForKey:@"responsetime"];
+                    [self->standardUser removeObjectForKey:@"signtoken"];
+                    [self->standardUser removeObjectForKey:@"signature_secret"];
+                    [self->standardUser removeObjectForKey:@"bioauth"];
+                    [self->standardUser removeObjectForKey:@"userpassword"];
                     [self->backgroundview removeFromSuperview];
                     [self.window.rootViewController performSegueWithIdentifier:@"loginsegue" sender:self.window.rootViewController];
                 });
@@ -317,6 +341,7 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
     [tabbarview tabbarrestart];
     [self->backgroundview removeFromSuperview];
     [writeclass writefile:@"app.foreground"];
+    [self testAlert];
     //UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     //scanview = [storyboard instantiateViewControllerWithIdentifier:@"intscanview"];
     //scanview.chargingvalue = receivedvalue;
@@ -328,6 +353,7 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
     NSLog(@"app did become active");
     
 }
+
 
 - (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings // NS_AVAILABLE_IOS(8_0);
 {
@@ -366,6 +392,7 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
     [reachable startNotifier];
 }
 */
+
 -(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     NSLog(@"recived the notification %@", userInfo);
     //UIView *getnot = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
@@ -517,6 +544,51 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     //[self.window.rootViewController performSegueWithIdentifier:@"scantheview" sender:self.window.rootViewController];
     //[self.window makeKeyAndVisible];
     return YES;
+}
+
+-(void)testAlert {
+    NSDate *now = [NSDate date];
+    
+    now = [now dateByAddingTimeInterval:30];
+
+    NSLog(@"NSDate:%@",now);
+
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+
+    [calendar setTimeZone:[NSTimeZone localTimeZone]];
+
+    NSDateComponents *components = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay|NSCalendarUnitHour|NSCalendarUnitMinute|NSCalendarUnitSecond|NSCalendarUnitTimeZone fromDate:now];
+
+//    NSDate *todaySehri = [calendar dateFromComponents:components]; //unused
+
+
+
+    UNMutableNotificationContent *objNotificationContent = [[UNMutableNotificationContent alloc] init];
+    objNotificationContent.title = [NSString localizedUserNotificationStringForKey:@"PAPAY" arguments:nil];
+    objNotificationContent.body = [NSString localizedUserNotificationStringForKey:@"This is local notification message!"
+                                                                        arguments:nil];
+    objNotificationContent.sound = [UNNotificationSound defaultSound];
+    objNotificationContent.badge = [NSNumber numberWithInt:1];
+
+    /// 4. update application icon badge number
+//    objNotificationContent.badge = @([[UIApplication sharedApplication] applicationIconBadgeNumber] + 1);
+
+
+    UNCalendarNotificationTrigger *trigger = [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:components repeats:NO];
+
+
+    UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"even"
+                                                                          content:objNotificationContent trigger:trigger];
+    /// 3. schedule localNotification
+    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+    [center addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
+        if (!error) {
+            NSLog(@"Local Notification succeeded");
+        }
+        else {
+            NSLog(@"Local Notification failed");
+        }
+    }];
 }
 
 #pragma mark - Core Data Saving support

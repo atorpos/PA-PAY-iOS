@@ -22,7 +22,7 @@
 "Login"= "Login";
 "Logout" = "Logout";
 "Check Out" = "Check Out";
-"NO TODAY'S TRANSCATION" = "NO TRANSACTIONS TODAY";
+"NO TODAY'S TRANSCATION" = "NO TRANSACTION";
 "Align QR code within the image to scan" = "Align QR code within the image to scan";
 "Scan QRcode" = "Scan QR Code";
 "Back" = "Back";

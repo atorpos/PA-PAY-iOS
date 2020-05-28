@@ -29,7 +29,7 @@
     UIView *secpanel;
     UIView *thipanel;
     CLLocationManager *locationManager;
-    UIWebView *webview;
+    WKWebView *webview;
     UIActivityIndicatorView *activityview;
     Reachability *reachable;
     papay_frameworks *pafw;

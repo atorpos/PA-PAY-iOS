@@ -20,6 +20,7 @@
 #import "AESCrypt.h"
 #import "papay_frameworks.h"
 #import "services.pch"
+#import <StoreKit/StoreKit.h>
 
 @interface FirstViewController () <CLLocationManagerDelegate, CNPPopupControllerDelegate>
 
@@ -37,12 +38,20 @@
     [pafw login];
     self.view.backgroundColor = [UIColor whiteColor];
     
+    
+    
     //[subclass openurl];
     //prove of framework sha512
     //NSLog(@"test sha 512 %@", [subclass performSelector:@selector(createSHA512:) withObject:@"123456"]);
     
     
     standardUser = [NSUserDefaults standardUserDefaults];
+    
+    NSLog(@"counting %@", [standardUser objectForKey:@"usetime"]);
+    
+    if([[standardUser objectForKey:@"usetime"] intValue] == 6) {
+        [SKStoreReviewController requestReview];
+    }
     NSString *stringskd = [NSString stringWithFormat:@""];
     for (int i =0; i<15; i++) {
         NSString *gennum = [NSString stringWithFormat:@"%d", arc4random() %10];
@@ -108,7 +117,7 @@
     firstpanel = [[UIView alloc] init];
     secpanel = [[UIView alloc] init];
     thipanel = [[UIView alloc] init];
-    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    if([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
         firstpanel.frame = CGRectMake(0, 64, curwidth, curheigh/4);
         secpanel.frame = CGRectMake(0,curheigh/3.5+curwidth/6+10, curwidth, curheigh/3+60);
         //thipanel.frame = CGRectMake(0, 0.619048*curheigh+curwidth/6+10, curwidth, 0.380952*curheigh-curwidth/6-10);

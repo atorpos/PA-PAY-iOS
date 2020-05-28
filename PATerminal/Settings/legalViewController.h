@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <WebKit/WebKit.h>
 
 @class writefiles;
-@interface legalViewController : UIViewController<UIWebViewDelegate> {
+@interface legalViewController : UIViewController<WKUIDelegate, WKNavigationDelegate> {
     CGFloat curwidth;
     CGFloat curheigh;
-    UIWebView *webview;
+    WKWebView *webview;
     UIActivityIndicatorView *activityView;
     IBOutlet UIButton *openinweb;
     IBOutlet UIButton *cancelbutton;

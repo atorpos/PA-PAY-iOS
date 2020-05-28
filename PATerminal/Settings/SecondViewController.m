@@ -10,6 +10,7 @@
 #import "LoginViewController.h"
 #import <CoreLocation/CoreLocation.h>
 #import <Contacts/Contacts.h>
+#import <ContactsUI/ContactsUI.h>
 #import "AboutViewController.h"
 #import "HelpViewController.h"
 #import "faqViewController.h"
@@ -25,7 +26,7 @@
 @end
 
 @implementation SecondViewController
-@synthesize tableview, securityswitch, modeswitch;
+@synthesize tableview, securityswitch, modeswitch, restswitch;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -37,11 +38,11 @@
         if (@available(iOS 11.0, *)) {
             if (context.biometryType == LABiometryTypeFaceID) {
                 NSLog(@"face id");
-                noofsection = 2;
+                noofsection = 3;
                 securtiytext = @"Face ID";
             } else if (context.biometryType == LABiometryTypeTouchID) {
                 NSLog(@"touch id");
-                noofsection = 2;
+                noofsection = 3;
                 securtiytext = @"Touch ID";
             }
         } else {
@@ -81,9 +82,11 @@
             NSLog(@"Error %@", error.description);
         } else {
             CLPlacemark *placemark = [placemarks lastObject];
-            NSArray *lines = placemark.addressDictionary[@"FormattedAddressLines"];
-            self->addressString = [lines componentsJoinedByString:@"\n"];
-            NSLog(@"Address %@", self->addressString);
+//            MKPlacemark *PlaceMark_MK = [[MKPlacemark alloc] initWithCoordinate:placemark.location.coordinate postalAddress:placemark.postalAddress];
+//            NSArray *lines = placemark.postalAddress;
+//            self->addressString = [lines componentsJoinedByString:@"\n"];
+            self->addressString = [NSString stringWithFormat:@"%@ %@", placemark.postalAddress.street, placemark.postalAddress.city];
+            NSLog(@"Address %@", placemark.postalAddress.street);
             [self->textaddress setText:self->addressString];
         }
     }];
@@ -107,13 +110,13 @@
         case 1:
             noofrowsection = 4;
             break;
-        case 2:
-            noofrowsection = 1;
+        case 4:
+            noofrowsection = 2;
             break;
         case 3:
             noofrowsection = 1;
             break;
-        case 4:
+        case 2:
             noofrowsection = 1;
             break;
         default:
@@ -155,6 +158,14 @@
                         [cell.contentView addSubview:logoutbutton];
                     }
                         break;
+                    case 2:
+                    {
+                        twoFAbutton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+                        twoFAbutton.frame = CGRectMake(8, 2, curwidth-16, 36);
+                        twoFAbutton.titleLabel.font = [UIFont systemFontOfSize:17];
+                        [twoFAbutton setTitle:NSLocalizedString(@"2-Step Verification", nil) forState:UIControlStateNormal];
+                        [cell.contentView addSubview:twoFAbutton];
+                    }
                     default:
                         break;
                 }
@@ -190,7 +201,7 @@
             }
         }
             break;
-        case 4:
+        case 5:
         {
             switch (indexPath.row) {
                 case 0:
@@ -203,7 +214,7 @@
             }
         }
             break;
-        case 5:
+        case 3:
         {
             switch (indexPath.row) {
                 case 0:
@@ -217,7 +228,7 @@
             }
         }
             break;
-        case 3:
+        case 2:
         {
             switch (indexPath.row) {
                 case 0:
@@ -305,7 +316,7 @@
             }
         }
             break;
-        case 2:
+        case 4:
         {
             switch (indexPath.row) {
                 case 0:
@@ -336,7 +347,32 @@
                 }
                     
                     break;
-                    
+                case 1:
+                {
+                    cell.textLabel.text = NSLocalizedString(@"Restaurant Mode", nil);
+                    restswitch = [[UISwitch alloc] initWithFrame:CGRectMake(curwidth-60, 5, 50, 30)];
+                    restswitch.transform = CGAffineTransformMakeScale(0.80, 0.80);
+                    if([self->standardUser objectForKey:@"restaurantmode"]) {
+                        switch ([[self->standardUser objectForKey:@"restaurantmode"] integerValue])
+                        {
+                        case 0:
+                        {
+                            [restswitch setOn:NO];
+                        }
+                            break;
+                        case 1:
+                        {
+                            [restswitch setOn:YES];
+                        }
+                            break;
+                            
+                        default:
+                            break;
+                        }
+                    }
+                    [restswitch addTarget:self action:@selector(restaurantmode:) forControlEvents:UIControlEventValueChanged];
+                    [cell.contentView addSubview:restswitch];
+                }
                 default:
                     break;
             }
@@ -357,8 +393,8 @@
         case 0:
             sectionName = NSLocalizedString(@"Account", nil);
             break;
-        case 2:
-            sectionName = NSLocalizedString(@"POS Mode", nil);
+        case 4:
+            sectionName = NSLocalizedString(@"Extra", nil);
             break;
         case 5:
             sectionName = NSLocalizedString(@"Your pervious use location", nil);
@@ -369,8 +405,8 @@
         case 1:
             sectionName = NSLocalizedString(@"Support", nil);
             break;
-        case 4:
-            sectionName = NSLocalizedString(@"Items", nil);
+        case 2:
+            sectionName = NSLocalizedString(@"Security", nil);
             break;
         default:
             break;
@@ -407,7 +443,11 @@
                         //aboutview = [storyboard instantiateViewControllerWithIdentifier:@"aboutivew"];
                         //[self.navigationController pushViewController:aboutview animated:YES];
                         NSURL *aboutURL = [NSURL URLWithString:@"https://www.paymentasia.com"];
-                        [[UIApplication sharedApplication] openURL:aboutURL];
+                        [[UIApplication sharedApplication] openURL:aboutURL options:@{} completionHandler:^(BOOL success) {
+                            if (success) {
+                                NSLog(@"Open URL");
+                            }
+                        }];
                     }
                         break;
                     case 3:
@@ -421,7 +461,7 @@
                 }
             }
             break;
-        case 4:
+        case 5:
         {
             switch (indexPath.row) {
                 case 0:
@@ -437,7 +477,7 @@
             }
         }
             break;
-        case 5:
+        case 3:
         {
             switch (indexPath.row) {
                 case 0:
@@ -474,13 +514,14 @@
     if(switchObj.isOn) {
         NSLog(@"value is on");
         NSError *authError = nil;
-        NSString *Localreasonstring = @"Bio ID test is on";
+        NSString *Localreasonstring = @"Bio authorization is ON";
         
         if ([context canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:&authError]) {
             [context evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics localizedReason:Localreasonstring reply:^(BOOL success, NSError *error) {
                 if(success) {
                     NSLog(@"success");
                     [self->standardUser setObject:@"1" forKey:@"bioauth"];
+                    [self performSelectorOnMainThread:@selector(settingalert:) withObject:Localreasonstring waitUntilDone:YES];
                 } else {
                     NSLog(@"fail");
                     dispatch_async(dispatch_get_main_queue(), ^{
@@ -495,7 +536,16 @@
     } else {
         NSLog(@"the value is off");
         [self->standardUser setObject:@"0" forKey:@"bioauth"];
+        [self performSelectorOnMainThread:@selector(settingalert:) withObject:[NSString stringWithFormat:@"Bio authorization is OFF"] waitUntilDone:YES];
     }
+}
+-(void)settingalert:(NSString *)sender {
+    UIAlertController *alertcontroller = [UIAlertController alertControllerWithTitle:@"Security" message:sender preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+    
+    [alertcontroller addAction:ok];
+    [self presentViewController:alertcontroller animated:YES completion:nil];
 }
 
 -(IBAction)qrcodemode:(id)sender {
@@ -508,6 +558,16 @@
         [self->standardUser setObject:@"0" forKey:@"qrcodemode"];
     }
 }
+-(IBAction)restaurantmode:(id)sender {
+    UISwitch *switchObj = (UISwitch *)sender;
+    if(switchObj.isOn) {
+        NSLog(@"it is on");
+        [self->standardUser setObject:@"1" forKey:@"restaurantmode"];
+    } else {
+        NSLog(@"it is off");
+        [self->standardUser setObject:@"0" forKey:@"restaurantmode"];
+    }
+}
 -(void)cancelallsession:(id)sender {
     NSLog(@"logout");
     NSUserDefaults *standarduser = [NSUserDefaults standardUserDefaults];
@@ -517,6 +577,7 @@
     [standarduser removeObjectForKey:@"responsetime"];
     [standarduser removeObjectForKey:@"signtoken"];
     [standarduser removeObjectForKey:@"signature_secret"];
+    [standarduser removeObjectForKey:@"bioauth"];
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
     loginview = [storyboard instantiateViewControllerWithIdentifier:@"loginview"];
@@ -529,10 +590,7 @@
     NSURL *appleURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://maps.apple.com/?q=%@",refineadd]];
     if (@available(iOS 10.0, *)) {
         [[UIApplication sharedApplication] openURL:appleURL options:@{} completionHandler:^(BOOL success){}];
-    } else {
-        [[UIApplication sharedApplication] openURL:appleURL];
     }
-    
 }
 -(void)webview:(id)sender {
     NSLog(@"open webview");

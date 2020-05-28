@@ -36,6 +36,9 @@
     float recorddate;
     UILongPressGestureRecognizer *longpress;
     UITapGestureRecognizer *twofingers;
+    UITapGestureRecognizer *getdatpick;
+    UIDatePicker *datepicker;
+    UIToolbar *toolBar;
     
     
 }

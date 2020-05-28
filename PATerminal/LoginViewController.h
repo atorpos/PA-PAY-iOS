@@ -40,6 +40,7 @@
 @property (nonatomic, retain) IBOutlet UIButton *loginbutton;
 @property (nonatomic, retain) IBOutlet UIButton *regisbutton;
 @property (nonatomic, retain) IBOutlet UIButton *forgetpasswd;
+@property (nonatomic, retain) IBOutlet UIButton *qrloginbutton;
 @property (nonatomic, retain) UIGestureRecognizer *taprecognizer;
 
 -(IBAction)sendlogin:(id)sender;

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class FirstViewController, SecondViewController, ThirdViewController, HistoryViewController, SystemViewController, CNPPopupController;
+@class FirstViewController, SecondViewController, ThirdViewController, HistoryViewController, SystemViewController, CNPPopupController, ReportViewController;
 @class writefiles;
 @interface TabBarViewController : UITabBarController<UITabBarControllerDelegate, UIScrollViewDelegate> {
     FirstViewController *firstview;
@@ -16,6 +16,7 @@
     ThirdViewController *thirdview;
     HistoryViewController *historyview;
     SystemViewController *systemview;
+    ReportViewController *reportview;
     writefiles *writefileclass;
     float insetbottom;
     UITabBarController *tabbarcontroller;

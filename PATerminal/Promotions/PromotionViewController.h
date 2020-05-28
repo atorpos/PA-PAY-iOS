@@ -10,11 +10,11 @@
 #import <WebKit/WebKit.h>
 
 @class writefiles;
-@interface PromotionViewController : UIViewController<UIWebViewDelegate, WKUIDelegate> {
+@interface PromotionViewController : UIViewController<UIWebViewDelegate, WKUIDelegate, WKNavigationDelegate> {
     NSUserDefaults *standardUser;
     CGFloat curwidth;
     CGFloat curheigh;
-    UIWebView *mainwebview;
+    WKWebView *mainwebview;
     UIActivityIndicatorView *activityView;
     //WKWebView *newwebview;
     NSString *weblinkstring;

@@ -17,7 +17,7 @@
 @end
 
 @implementation LoginViewController
-@synthesize merchantid, terminalid, passwdfld, loginbutton, regisbutton, forgetpasswd, taprecognizer;
+@synthesize merchantid, terminalid, passwdfld, loginbutton, regisbutton, forgetpasswd, taprecognizer, qrloginbutton;
 
 - (void)viewDidLoad {
 
@@ -64,12 +64,12 @@
     if (@available(iOS 12.0, *)) {
         if (self.traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
             loginbgview = [[UIView alloc] initWithFrame:CGRectMake(10, 60, curwidth-20, 430)];
-            loginbgview.backgroundColor = [UIColor colorWithWhite:0.1 alpha:0.8];
-            loginbgview.layer.cornerRadius = 5.0;
+            loginbgview.backgroundColor = [UIColor colorWithWhite:0.1 alpha:0.85];
+            loginbgview.layer.cornerRadius = 10.0;
         } else {
             loginbgview = [[UIView alloc] initWithFrame:CGRectMake(10, 60, curwidth-20, 430)];
-            loginbgview.backgroundColor = [UIColor colorWithWhite:1 alpha:0.8];
-            loginbgview.layer.cornerRadius = 5.0;
+            loginbgview.backgroundColor = [UIColor colorWithWhite:1 alpha:0.85];
+            loginbgview.layer.cornerRadius = 10.0;
         }
     } else {
         // Fallback on earlier versions
@@ -150,7 +150,7 @@
     loginbutton.frame = CGRectMake(30, 300, loginbgview.frame.size.width-60, 40);
     [loginbutton setTitle:NSLocalizedString(@"Login", nil) forState:UIControlStateNormal];
     [loginbutton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [loginbutton setBackgroundColor:[UIColor colorWithRed:0.27 green:0.46 blue:0.66 alpha:1]];
+    [loginbutton setBackgroundColor:[UIColor colorWithRed:0.13 green:0.40 blue:1.0 alpha:1]];
     loginbutton.layer.borderWidth = 0.5f;
     loginbutton.layer.borderColor = [UIColor whiteColor].CGColor;
     loginbutton.layer.cornerRadius = 20.0f;
@@ -165,6 +165,13 @@
     [loginbgview addSubview:passwdfld];
     [loginbgview addSubview:loginbutton];
 //    [loginbgview addSubview:regisbutton];
+    
+    qrloginbutton = [UIButton buttonWithType:UIButtonTypeCustom];
+    qrloginbutton.frame = CGRectMake(30, 360, loginbgview.frame.size.width-60, 24);
+    [qrloginbutton setTitle:NSLocalizedString(@"QRCode Login", nil) forState:UIControlStateNormal];
+    [qrloginbutton setTitleColor:[UIColor colorWithRed:0.13 green:0.4 blue:1.0 alpha:1] forState:UIControlStateNormal];
+    
+//    [loginbgview addSubview:qrloginbutton];
 
     [self.view addSubview:loginbgview];
     UILabel *viewtnc = [[UILabel alloc] initWithFrame:CGRectMake(10, curheigh-35, curwidth-20, 15)];
@@ -274,14 +281,19 @@
 
 -(IBAction)regist:(id)sender {
     NSURL *aboutURL = [NSURL URLWithString:EXTERNAL_URL];
-    [[UIApplication sharedApplication] openURL:aboutURL];
+    [[UIApplication sharedApplication] openURL:aboutURL options:@{} completionHandler:^(BOOL success){
+        if(success) {
+            
+        }
+    }];
+    
 }
 -(void)loadingview {
     loadingbgview = [[UIView alloc] init];
     loadingbgview.frame = CGRectMake(0, 0, curwidth, curheigh);
     loadingbgview.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.5];
     [self.view addSubview:loadingbgview];
-    loadingviewsp = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    loadingviewsp = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleLarge];
     [loadingviewsp setCenter:CGPointMake(curwidth/2, curheigh/2)];
     [loadingbgview addSubview:loadingviewsp];
     [loadingviewsp startAnimating];

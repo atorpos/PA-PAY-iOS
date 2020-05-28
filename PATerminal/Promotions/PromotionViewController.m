@@ -36,7 +36,7 @@
     weblinkstring = @"https://merchant.pa-sys.com/alipay/promotion/";
     
     activityView = [[UIActivityIndicatorView alloc]
-                    initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+                    initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleMedium];
     
     activityView.center=self.view.center;
     
@@ -46,9 +46,9 @@
     NSURLRequest *requesturl = [NSURLRequest requestWithURL:url];
     //mainwebview = [[WKWebView alloc] init];
     //mainwebview.frame = CGRectMake(0, 0, curwidth, curheigh-0);
-    mainwebview = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, curwidth, curheigh-0)];
+    mainwebview = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, curwidth, curheigh-0)];
     [mainwebview loadRequest:requesturl];
-    mainwebview.delegate = self;
+    mainwebview.navigationDelegate = self;
     /*
      if ([websetting isEqualToString:@"social"]) {
      openinweb = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -92,16 +92,20 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
--(void)webViewDidFinishLoad:(UIWebView *)webView {
+
+-(void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation {
     
-    NSLog(@"link %@", webView.request.URL.absoluteString);
-    if (![webView.request.URL.absoluteString isEqualToString:weblinkstring]) {
+}
+
+-(void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
+    NSLog(@"get link %@", webView.URL.absoluteString);
+    if(![webView.URL.absoluteString isEqualToString:weblinkstring]) {
         item = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Back", nil) style:UIBarButtonItemStylePlain target:self action:@selector(backtoprevious:)];
         [self.navigationItem setLeftBarButtonItem:item];
         [item setEnabled:YES];
     }
-    
 }
+
 -(IBAction)backtoprevious:(id)sender {
     NSLog(@"back is clicked");
     [item setEnabled:NO];

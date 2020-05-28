@@ -22,7 +22,7 @@
 "Login"= "登入";
 "Logout" = "登出";
 "Check Out" = "結帳";
-"NO TODAY'S TRANSCATION" = "今日未有交易紀錄";
+"NO TODAY'S TRANSCATION" = "未有交易紀錄";
 "Align QR code within the image to scan" = "請對準掃描商戶的二維碼";
 "Scan QRcode" = "掃描二維碼";
 "Back" = "返回";

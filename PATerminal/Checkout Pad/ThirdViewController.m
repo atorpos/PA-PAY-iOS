@@ -799,8 +799,7 @@
     capturesession = nil;
     //[standarddefault setObject:scanqrcode forKey:@"add_sku"];
     dispatch_async(dispatch_get_main_queue(), ^{
-        
-        
+    
     });
     
 }
@@ -823,8 +822,10 @@
     if(recallvalue == 10) {
         finalvalue = @".";
     }
+    
     calcualtvalue = [NSString stringWithFormat:@"%@%@", calcualtvalue, finalvalue];
     
+    NSLog(@"show value %@ %@", finalvalue, calcualtvalue);
     if ([calcualtvalue hasPrefix:@"."] || [calcualtvalue hasPrefix:@"0"]) {
         calcualtvalue = [calcualtvalue substringFromIndex:1];
     }
@@ -837,6 +838,9 @@
     }   else {
         NSLog(@"no dot");
     }
+    if ([calcualtvalue length] > 7 || [calcualtvalue floatValue] > 99999.99) {
+        calcualtvalue = @"99999.99";
+    }
     NSLog(@"no pad is press %@", calcualtvalue);
     NSString *showvalue = [NSString stringWithFormat:@"$ %@", calcualtvalue];
     NSString *showbuttonvalue = [NSString stringWithFormat:@"Total: $ %@", calcualtvalue];
@@ -845,6 +849,14 @@
     } else {
         onpay.userInteractionEnabled = YES;
     }
+//    if ([calcualtvalue length] == 0 && recallvalue == 0) {
+//        showvalue = @"0.00";
+//    }
+//    if([calcualtvalue length] == 0 && [finalvalue isEqualToString:@"."]) {
+//        NSLog(@"show the dot");
+//        showvalue = @"0.";
+//    }
+    
     [buttonlabel setText:showbuttonvalue];
     [showvaluelabel setText:showvalue];
     [showvaluelabel setNeedsDisplay];

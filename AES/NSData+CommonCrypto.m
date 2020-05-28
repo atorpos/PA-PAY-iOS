@@ -136,6 +136,7 @@ NSString * const kCommonCryptoErrorDomain = @"CommonCryptoErrorDomain";
 {
 	unsigned char hash[CC_SHA1_DIGEST_LENGTH];
 	(void) CC_SHA1( [self bytes], (CC_LONG)[self length], hash );
+    
 	return ( [NSData dataWithBytes: hash length: CC_SHA1_DIGEST_LENGTH] );
 }
 

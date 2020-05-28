@@ -28,10 +28,7 @@
     [[self navigationController] setNavigationBarHidden:YES];
     defaults = [NSUserDefaults standardUserDefaults];
     NSLog(@"the channel %@", [defaults objectForKey:@"channels"]);
-    /*
-     internal request url : https://api_request-adamlok.pzhkit.com/alipay_request.php
-     internal test query url : https://api_request-adamlok.pzhkit.com/alipay_query.php
-     */
+    
     requesturl = [NSString stringWithFormat:@"%@%@",PRODUCTIONURL, REQUEST_ENDPOINT];
     querystring = [NSString stringWithFormat:@"%@%@",PRODUCTIONURL,QUERY_ENDPOINT];
     acquireqrcodeurl = [NSString stringWithFormat:@"%@%@", PRODUCTIONURL, ONETIME_ENDPOINT];
@@ -44,11 +41,11 @@
 }
 
 -(void)centralManagerDidUpdateState:(CBCentralManager *)central {
-    if (central.state != CBCentralManagerStatePoweredOn) {
+    if (central.state != CBManagerStatePoweredOn) {
         return;
     }
     
-    if (central.state == CBCentralManagerStatePoweredOn) {
+    if (central.state == CBManagerStatePoweredOn) {
         [centralManager scanForPeripheralsWithServices:@[[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID]] options:@{CBCentralManagerScanOptionAllowDuplicatesKey:@YES}];
         
     }
@@ -117,7 +114,7 @@
     [bgimage setImage:[UIImage imageNamed:@"app_background.png"]];
     [self.view addSubview:bgimage];
     
-    UIWindow *window = UIApplication.sharedApplication.keyWindow;
+    UIWindow *window = UIApplication.sharedApplication.windows.firstObject;
     CGFloat topPadding = window.safeAreaInsets.top;
     
     NSLog(@"show safe are insit %f", topPadding);
@@ -325,7 +322,7 @@
     loadingbgview.frame = CGRectMake(0, 0, curwidth, curheigh);
     loadingbgview.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.5];
     [self.view addSubview:loadingbgview];
-    loadingview = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    loadingview = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleLarge];
     [loadingview setCenter:CGPointMake(curwidth/2, curheigh/2)];
     [loadingbgview addSubview:loadingview];
     [loadingview startAnimating];
@@ -410,7 +407,10 @@
     notificelabel.textColor = [UIColor colorWithWhite:0.98 alpha:1];
     notificelabel.adjustsFontSizeToFitWidth = YES;
     [topview addSubview:notificelabel];
-    [self qrcamfnt];
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        [self qrcamfnt];
+    }
+    
     //[self getonetimeqrcode];
 }
 
@@ -440,6 +440,7 @@
 }
 
 -(IBAction)getonetimeqrcode:(id)sender {
+    [self loadingview];
     UIButton *button = (UIButton *)sender;
     NSLog(@"show tag %ld", (long)[button tag]);
     if([button tag] == 0) {
@@ -750,7 +751,8 @@
     amountname.text = [NSString stringWithFormat:@"%@ %@", [defaults objectForKey:@"usercurrency"], chargingvalue];
     [doneview removeFromSuperview];
     [bottomcancelbutton removeFromSuperview];
-    doneview = [[UIView alloc] initWithFrame:CGRectMake(0, 70, curwidth, curheigh-70)];
+    
+    doneview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, curwidth, curheigh-0)];
     doneview.backgroundColor = [UIColor colorWithRed:0.51 green:0.85 blue:0.63 alpha:1];
     [self.view addSubview:doneview];
     
@@ -802,6 +804,18 @@
     bottomcancelbutton.layer.cornerRadius = 25.0f;
     [bottomcancelbutton addTarget:self action:@selector(closeview:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:bottomcancelbutton];
+    
+    
+    emailnotification = [UIButton buttonWithType:UIButtonTypeCustom];
+    emailnotification.frame = CGRectMake(20, curheigh-160, curwidth-40, 50);
+    [emailnotification setTitle:@"Email Receipt" forState:UIControlStateNormal];
+    [emailnotification setBackgroundColor:[UIColor whiteColor]];
+    [emailnotification setTitleColor:[UIColor colorWithRed:0.51 green:0.85 blue:0.63 alpha:1] forState:UIControlStateNormal];
+    emailnotification.layer.borderColor = [UIColor whiteColor].CGColor;
+    emailnotification.layer.borderWidth = 0.5f;
+    emailnotification.layer.cornerRadius = 25.0f;
+    [emailnotification addTarget:self action:@selector(submitemail:) forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:emailnotification];
     
     //startbutton = [UIButton buttonWithType:UIButtonTypeCustom];
     //startbutton.frame = CGRectMake(0, 0, 300, 55);
@@ -1076,6 +1090,12 @@
     signstring = output;
     //NSLog(@"the sha 512 string: %@", output);
     return output;
+}
+
+-(IBAction)submitemail:(id)sender {
+    finishview = [self.storyboard instantiateViewControllerWithIdentifier:@"finishemailview"];
+    
+    [self.navigationController pushViewController:finishview animated:YES];
 }
 -(IBAction)closeview:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];

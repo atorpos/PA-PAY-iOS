@@ -11,6 +11,7 @@
 #import "SecondViewController.h"
 #import "ThirdViewController.h"
 #import "SystemViewController.h"
+#import "ReportViewController.h"
 #import "HistoryViewController.h"
 #import "CNPPopupController.h"
 #import "writefiles.h"
@@ -20,7 +21,7 @@
 
 @end
 
-#define kSetidleTimer @"3000.0"
+#define kSetidleTimer @"6000.0"
 
 @implementation TabBarViewController
 @synthesize pageControl;
@@ -95,7 +96,7 @@
         NSLog(@"reset time on tab");
         [autotimer invalidate];
         autotimer = nil;
-        [self settimer:@"300.0"];
+        [self settimer:@"6000.0"];
     }
 }
 -(void) setUpTabbar {
@@ -126,7 +127,10 @@
     UINavigationController *fifthNavController = [[UINavigationController alloc] initWithRootViewController:historyview];
     //historyview.tabBarItem.badgeValue = @"1";
     
-    
+//    reportview = [[ReportViewController alloc] init];
+//    reportview.title = NSLocalizedString(@"Report", nil);
+//    reportview.tabBarItem = [[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"Reports", nil) image:[UIImage imageNamed:@"cloud"] tag:3];
+//    UINavigationController *forthNavController = [[UINavigationController alloc] initWithRootViewController:reportview];
     
     tabbarcontroller = [[UITabBarController alloc] initWithNibName:nil bundle:nil];
     tabbarcontroller.viewControllers = [[NSArray alloc] initWithObjects:firstNavController,forthNavController , thirdNavController, fifthNavController ,secondNavController, nil];
@@ -139,7 +143,7 @@
 -(void)settimer:(id)sender
 {
     float timetode = [sender floatValue];
-    autotimer = [NSTimer scheduledTimerWithTimeInterval:timetode target:self selector:@selector(showscreen) userInfo:nil repeats:NO];
+//    autotimer = [NSTimer scheduledTimerWithTimeInterval:timetode target:self selector:@selector(showscreen) userInfo:nil repeats:NO];
     //autotimer = [NSTimer timerWithTimeInterval:timetode target:self selector:@selector(showscreen) userInfo:nil repeats:YES];
 }
 -(void)showscreen {

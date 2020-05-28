@@ -85,19 +85,32 @@
         case 0:
             {
                 NSURL *phoneURL = [NSURL URLWithString:@"telprompt:+85222453201"];
-                [[UIApplication sharedApplication] openURL:phoneURL];
+                [[UIApplication sharedApplication] openURL:phoneURL options:@{} completionHandler:^(BOOL success){
+                    if (success) {
+                        NSLog(@"Success");
+                    }
+                }];
             }
             break;
         case 1:
             {
                 NSURL *phoneURL = [NSURL URLWithString:@"telprompt:+85222073185"];
-                [[UIApplication sharedApplication] openURL:phoneURL];
+                [[UIApplication sharedApplication] openURL:phoneURL options:@{} completionHandler:^(BOOL success){
+                    if (success) {
+                        NSLog(@"Success");
+                    }
+                }];
             }
             break;
         case 2:
         {
             NSURL *phoneURL = [NSURL URLWithString:@"https://api.whatsapp.com/send?phone=85291687234"];
-            [[UIApplication sharedApplication] openURL:phoneURL];
+            [[UIApplication sharedApplication] openURL:phoneURL options:@{} completionHandler:^(BOOL success){
+                if (success) {
+                    NSLog(@"Success");
+                }
+            }];
+//            [[UIApplication sharedApplication] openURL:phoneURL];
         }
         default:
             break;

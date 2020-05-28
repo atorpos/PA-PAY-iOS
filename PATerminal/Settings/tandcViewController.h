@@ -7,12 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <WebKit/WebKit.h>
 
 @class FirstViewController;
 @class LoginViewController;
 @class writefiles;
-@interface tandcViewController : UIViewController<UIWebViewDelegate> {
-    UIWebView *mainview;
+@interface tandcViewController : UIViewController<WKUIDelegate, WKNavigationDelegate> {
+    WKWebView *mainview;
+//    UIWebView *mainview;
     UIView *bottomview;
     UIView *topview;
     CGFloat curwidth;

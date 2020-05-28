@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7gU-e0-Xj5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7gU-e0-Xj5">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -53,6 +52,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="crh-rQ-XB2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3033" y="-358"/>
+        </scene>
+        <!--Finished View Controller-->
+        <scene sceneID="veh-C6-bgw">
+            <objects>
+                <viewController storyboardIdentifier="finishemailview" id="hyB-ZN-KXB" customClass="FinishedViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="l3i-JD-W1I">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="rOg-bN-2jF"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2mH-yM-j1a" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3903" y="-356"/>
         </scene>
         <!--Settings-->
         <scene sceneID="Npr-Sf-ril">
@@ -370,10 +384,10 @@
             </objects>
             <point key="canvasLocation" x="750" y="1906"/>
         </scene>
-        <!--System View Controller-->
+        <!--Report View Controller-->
         <scene sceneID="2YB-ev-W9Q">
             <objects>
-                <viewController storyboardIdentifier="systemview" id="APE-Lj-o3e" customClass="SystemViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="systemview" id="APE-Lj-o3e" customClass="ReportViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="EXH-Iz-WPT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

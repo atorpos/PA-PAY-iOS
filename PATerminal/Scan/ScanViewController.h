@@ -61,6 +61,7 @@
     NSString *onetime_network;
     NSString *posttosignst;
     NSString *posttov3st;
+    UIButton *emailnotification;
 }
 
 @property (copy) NSString *chargingvalue;

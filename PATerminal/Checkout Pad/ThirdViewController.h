@@ -71,7 +71,7 @@
     writefiles *writefileclass;
     UITextField *remarkfield;
     UILabel *billremake;
-    
+    NSString *exactvalue;
     NSString *theqrcodemode;
 }
 @property (nonatomic, retain)NSString *calcualtvalue;

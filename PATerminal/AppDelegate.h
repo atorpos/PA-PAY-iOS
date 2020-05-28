@@ -24,6 +24,7 @@
 @class Reachability;
 @class TabBarViewController;
 @class ScanViewController;
+@class papay_frameworks;
 @interface AppDelegate : UIResponder <UIApplicationDelegate, CLLocationManagerDelegate, UNUserNotificationCenterDelegate, FIRMessagingDelegate> {
     CLLocationManager *locationManager;
     NSUserDefaults *standardUser;
@@ -38,6 +39,7 @@
     Reachability *reachability;
     TabBarViewController *tabbarview;
     ScanViewController *scanview;
+    papay_frameworks *paypayframework;
     NSTimer *autotimer;
     NSString *receivedvalue;
 }

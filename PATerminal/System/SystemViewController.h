@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "UIImageView+WebCache.h"
+#import <WebKit/WebKit.h>
 
 @class WebViewController;
 @class LoginViewController;
 @class writefiles;
-@interface SystemViewController : UIViewController  <UIWebViewDelegate ,UIActionSheetDelegate> {
+@interface SystemViewController : UIViewController  <UIActionSheetDelegate, WKUIDelegate, WKNavigationDelegate> {
     UIView *bgview;
     CGFloat curwidth;
     CGFloat curheigh;
@@ -35,7 +36,7 @@
     LoginViewController *loginview;
     UIView *errorview;
     NSString *pagetitlelabel;
-    UIWebView *mainview;
+    WKWebView *mainview;
     UIActivityIndicatorView *activityView;
     writefiles *writefileclass;
 }
